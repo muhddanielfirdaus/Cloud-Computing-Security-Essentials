@@ -80,7 +80,9 @@ Docker version 26.1.5+dfsg1, build a72d7cd
 
 **Analysis:** Docker version 26.1.5+dfsg1 is successfully installed. This version is sufficient for running containerized applications required in the lab exercises.
 
-**Evidence:** See [Screenshot 111.png](#screenshot-111)
+**Evidence:** 
+
+![Docker Version](Images/111.png)
 
 ---
 
@@ -104,7 +106,11 @@ aws-cli/2.36.9 Python/3.14.6 Linux/6.16.8+kali-amd64 exe/x86_64.kali.2025
 
 **Analysis:** AWS CLI version 2.36.9 is installed and operational. The CLI is running on Python 3.14.6 on a Kali Linux system (kernel 6.16.8). This version supports all AWS service interactions required for the course.
 
-**Evidence:** See [Screenshot 112.png](#screenshot-112) and [Screenshot 119.png](#screenshot-119)
+**Evidence:** 
+
+![AWS CLI Version](Images/112.png) 
+
+![AWS CLI Version Additional](Images/119.png)
 
 ---
 
@@ -128,7 +134,9 @@ kind version 0.23.0
 
 **Analysis:** kind version 0.23.0 is successfully installed. This tool enables running local Kubernetes clusters using Docker containers, which is essential for container orchestration labs.
 
-**Evidence:** See [Screenshot 113.png](#screenshot-113)
+**Evidence:**
+
+![kind Version](Images/113.png)
 
 ---
 
@@ -153,7 +161,9 @@ Kustomize Version: v5.5.0
 
 **Analysis:** kubectl client version v1.33.4 is installed with Kustomize v5.5.0. This provides the necessary interface to interact with Kubernetes clusters and manage Kubernetes resources.
 
-**Evidence:** See [Screenshot 114.png](#screenshot-114)
+**Evidence:**
+
+![kubectl Version](Images/114.png)
 
 ---
 
@@ -177,7 +187,9 @@ OpenSSL 3.5.4 30 Sep 2025 (Library: OpenSSL 3.5.4 30 Sep 2025)
 
 **Analysis:** OpenSSL version 3.5.4 (released September 30, 2025) is installed. This provides essential cryptographic functions including certificate generation, encryption, and secure communication protocols needed for security-related labs.
 
-**Evidence:** See [Screenshot 115.png](#screenshot-115)
+**Evidence:**
+
+![OpenSSL Version](Images/115.png)
 
 ---
 
@@ -207,7 +219,9 @@ Written by Simon Josefsson.
 
 **Analysis:** OATH Toolkit version 2.6.14 is successfully installed. This tool is essential for implementing and testing time-based one-time password (TOTP) and HMAC-based one-time password (HOTP) authentication mechanisms in security labs.
 
-**Evidence:** See [Screenshot 116.png](#screenshot-116)
+**Evidence:**
+
+![OATH Toolkit Version](Images/116.png)
 
 ---
 
@@ -232,7 +246,9 @@ ccse-control-plane   Ready    control-plane   4m32s   v1.30.0
 
 **Analysis:** A Kubernetes cluster named "ccse-control-plane" is running and operational. The control plane node shows a "Ready" status, indicating it has been running for 4 minutes and 32 seconds. The cluster is running Kubernetes version v1.30.0, which is suitable for course requirements.
 
-**Evidence:** See [Screenshot 117.png](#screenshot-117)
+**Evidence:**
+
+![Kubernetes Nodes](Images/117.png)
 
 ---
 
@@ -303,7 +319,9 @@ curl http://localhost:4566/_localstack/health
 
 This local AWS emulation environment enables testing cloud applications without incurring AWS costs.
 
-**Evidence:** See [Screenshot 118.png](#screenshot-118)
+**Evidence:**
+
+![LocalStack Health](Images/118.png)
 
 ---
 
@@ -338,7 +356,9 @@ aws $EP sts get-caller-identity
 
 This confirms proper integration between AWS CLI and LocalStack, enabling AWS service operations in the local development environment.
 
-**Evidence:** See [Screenshot 120.png](#screenshot-120)
+**Evidence:**
+
+![AWS STS Identity](Images/120.png)
 
 ---
 
