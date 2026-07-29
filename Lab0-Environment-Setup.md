@@ -410,7 +410,7 @@ With the environment successfully verified, the following activities can proceed
 ### Screenshot 111.png
 **Docker Version Verification**
 
-![Docker Version](111.png)
+![Docker Version](images/111.png)
 
 Command output showing Docker version 26.1.5+dfsg1, build a72d7cd
 
@@ -419,7 +419,7 @@ Command output showing Docker version 26.1.5+dfsg1, build a72d7cd
 ### Screenshot 112.png
 **AWS CLI Version Verification**
 
-![AWS CLI Version](112.png)
+![AWS CLI Version](images/112.png)
 
 Command output showing aws-cli/2.36.9 with Python/3.14.6 on Linux/6.16.8+kali-amd64
 
@@ -428,7 +428,7 @@ Command output showing aws-cli/2.36.9 with Python/3.14.6 on Linux/6.16.8+kali-am
 ### Screenshot 113.png
 **kind Version Verification**
 
-![kind Version](113.png)
+![kind Version](images/113.png)
 
 Command output showing kind version 0.23.0
 
@@ -437,7 +437,7 @@ Command output showing kind version 0.23.0
 ### Screenshot 114.png
 **kubectl Version Verification**
 
-![kubectl Version](114.png)
+![kubectl Version](images/114.png)
 
 Command output showing Client Version: v1.33.4 and Kustomize Version: v5.5.0
 
@@ -446,7 +446,7 @@ Command output showing Client Version: v1.33.4 and Kustomize Version: v5.5.0
 ### Screenshot 115.png
 **OpenSSL Version Verification**
 
-![OpenSSL Version](115.png)
+![OpenSSL Version](images/115.png)
 
 Command output showing OpenSSL 3.5.4 30 Sep 2025
 
@@ -455,7 +455,7 @@ Command output showing OpenSSL 3.5.4 30 Sep 2025
 ### Screenshot 116.png
 **OATH Toolkit Version Verification**
 
-![OATH Toolkit Version](116.png)
+![OATH Toolkit Version](images/116.png)
 
 Command output showing oathtool (OATH Toolkit) 2.6.14 with license information
 
@@ -464,7 +464,7 @@ Command output showing oathtool (OATH Toolkit) 2.6.14 with license information
 ### Screenshot 117.png
 **Kubernetes Cluster Status**
 
-![Kubernetes Nodes](117.png)
+![Kubernetes Nodes](images/117.png)
 
 Command output showing ccse-control-plane node in Ready status running v1.30.0
 
@@ -473,7 +473,7 @@ Command output showing ccse-control-plane node in Ready status running v1.30.0
 ### Screenshot 118.png
 **LocalStack Health Check**
 
-![LocalStack Health](118.png)
+![LocalStack Health](images/118.png)
 
 JSON response showing LocalStack Community 3.8.1 with all services marked as "available"
 
@@ -482,7 +482,7 @@ JSON response showing LocalStack Community 3.8.1 with all services marked as "av
 ### Screenshot 119.png
 **AWS CLI Version (Additional)**
 
-![AWS CLI Version Additional](119.png)
+![AWS CLI Version Additional](images/119.png)
 
 Additional verification of AWS CLI version 2.36.9
 
@@ -491,7 +491,7 @@ Additional verification of AWS CLI version 2.36.9
 ### Screenshot 120.png
 **AWS STS Get Caller Identity**
 
-![AWS STS Identity](120.png)
+![AWS STS Identity](images120.png)
 
 JSON response showing successful authentication with LocalStack including UserId, Account, and Arn
 
