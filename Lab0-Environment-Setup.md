@@ -16,12 +16,12 @@ This report documents the successful completion of Lab 0 environment setup verif
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Prerequisites](#prerequisites)
-3. [Verification Steps](#verification-steps)
-4. [Evidence Summary](#evidence-summary)
-5. [Conclusion](#conclusion)
-6. [Appendix: Screenshots](#appendix-screenshots)
+1. [Introduction](#1-introduction)
+2. [Prerequisites](#2-prerequisites)
+3. [Verification Steps](#3-verification-steps)
+4. [Evidence Summary](#4-evidence-summary)
+5. [Conclusion](#5-conclusion)
+6. [Appendix: Screenshots](#6-appendix-screenshots)
 
 ---
 
