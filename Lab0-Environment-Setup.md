@@ -491,10 +491,8 @@ Additional verification of AWS CLI version 2.36.9
 ### Screenshot 120.png
 **AWS STS Get Caller Identity**
 
-![AWS STS Identity](Images120.png)
+![AWS STS Identity](Images/120.png)
 
 JSON response showing successful authentication with LocalStack including UserId, Account, and Arn
 
 ---
-
-**End of Report**
