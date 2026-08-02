@@ -55,7 +55,9 @@ docker --version
 Docker version 29.6.2, build dfc4efb
 ```
 
-**Evidence:** Screenshot 201.png
+**Evidence:**
+
+(Images/201.png)
 
 **Explanation:** 
 This command verifies that Docker is properly installed on the system. Docker is required to run LocalStack, which provides a local AWS cloud environment for testing and development.
@@ -74,7 +76,9 @@ docker run -d --name localstack -p 4566:4566 localstack/localstack
 Error response from daemon: Conflict. The container name "/localstack" is already in use by container "6f7a4122f1cc6ada0277e559ab83936b9023c298c917d92a8bde8b27ff97186d42". You have to remove (or rename) that container to be able to reuse that name.
 ```
 
-**Evidence:** Screenshot 202.png
+**Evidence:**
+
+(Images/202.png)
 
 **Explanation:**
 - The `-d` flag runs the container in detached mode (background)
@@ -113,7 +117,9 @@ curl http://localhost:4566/_localstack/health
 }
 ```
 
-**Evidence:** Screenshot 203.png
+**Evidence:**
+
+(Images/203.png)
 
 **Explanation:**
 This command checks the health status of LocalStack services. A status code of 200 indicates that LocalStack is running successfully and various AWS services (including IAM) are available for use.
@@ -138,7 +144,9 @@ aws --endpoint-url=http://localhost:4566 sts get-caller-identity
 }
 ```
 
-**Evidence:** Screenshot 204.png
+**Evidence:**
+
+(Images/204.png)
 
 **Explanation:**
 This command verifies the current AWS identity when connected to LocalStack. The output shows we're authenticated as the root user of the LocalStack account (000000000000).
@@ -165,7 +173,9 @@ aws --endpoint-url=http://localhost:4566 iam create-group --group-name Admins
 }
 ```
 
-**Evidence:** Screenshot 205.png
+**Evidence:**
+
+(Images/205.png)
 
 **Explanation:**
 This command creates an IAM group named "Admins" which will be used to manage administrative permissions. Groups allow you to manage permissions for multiple users collectively.
@@ -192,7 +202,9 @@ aws --endpoint-url=http://localhost:4566 iam create-user --user-name CloudAdmin_
 }
 ```
 
-**Evidence:** Screenshot 206.png
+**Evidence:**
+
+(Images/206.png)
 
 **Explanation:**
 This command creates an IAM user named "CloudAdmin_Daniel". This user will be assigned administrative privileges through group membership.
@@ -233,7 +245,9 @@ aws --endpoint-url=http://localhost:4566 iam get-group --group-name Admins
 }
 ```
 
-**Evidence:** Screenshot 207.png
+**Evidence:**
+
+(Images/207.png)
 
 **Explanation:**
 This command adds the user "CloudAdmin_Daniel" to the "Admins" group. The verification shows that the user is successfully associated with the group.
@@ -260,7 +274,9 @@ aws --endpoint-url=http://localhost:4566 iam create-user --user-name Analyst_Dan
 }
 ```
 
-**Evidence:** Screenshot 208.png
+**Evidence:**
+
+(Images/208.png)
 
 **Explanation:**
 This command creates a second IAM user named "Analyst_Daniel" who will be assigned limited read-only permissions for S3 resources.
@@ -291,7 +307,9 @@ aws --endpoint-url=http://localhost:4566 iam list-attached-user-policies --user-
 }
 ```
 
-**Evidence:** Screenshot 209.png
+**Evidence:**
+
+(Images/209.png)
 
 **Explanation:**
 This command attaches the AWS managed policy "AmazonS3ReadOnlyAccess" to the Analyst_Daniel user, granting read-only access to S3 resources. This demonstrates the principle of least privilege.
@@ -318,7 +336,9 @@ aws --endpoint-url=http://localhost:4566 iam create-access-key --user-name Analy
 }
 ```
 
-**Evidence:** Screenshot 210.png
+**Evidence:**
+
+(Images/210.png)
 
 **Important Security Note:**
 Access keys provide programmatic access to AWS services. The SecretAccessKey should be stored securely and never shared or committed to version control systems.
@@ -346,7 +366,9 @@ aws --endpoint-url=http://localhost:4566 iam list-access-keys --user-name Analys
 }
 ```
 
-**Evidence:** Screenshot 211.png
+**Evidence:**
+
+(Images/211.png)
 
 **Explanation:**
 This command lists all access keys associated with the Analyst_Daniel user, showing the AccessKeyId, status, and creation date.
@@ -378,7 +400,9 @@ Deleted nodes: ["ccse-lab1-control-plane"]
 ERROR: failed to create cluster: failed to init node with kubeadm: command "docker exec --privileged ccse-lab1-control-plane kubeadm init --config=/kind/kubeadm.conf --skip-token-print --v=6" failed with error: exit status 139
 ```
 
-**Evidence:** Screenshot 212.png
+**Evidence:**
+
+(Images/212.png)
 
 **Explanation:**
 This command creates a Kubernetes cluster named "ccse-lab1" using Kind (Kubernetes in Docker). Although there was an initial error (exit status 139), this is typically resolved by retrying or ensuring Docker resources are adequate.
@@ -400,7 +424,9 @@ CoreDNS is running at https://127.0.0.1:37931/api/v1/namespaces/kube-system/serv
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
-**Evidence:** Screenshot 213.png
+**Evidence:**
+
+(Images/213.png)
 
 **Explanation:**
 This command displays information about the Kubernetes cluster, confirming that the control plane and CoreDNS are running successfully. The cluster is accessible via localhost on port 37931.
@@ -420,7 +446,9 @@ NAME                       STATUS   ROLES           AGE   VERSION
 ccse-lab1-control-plane    Ready    control-plane   87s   v1.35.0
 ```
 
-**Evidence:** Screenshot 214.png
+**Evidence:**
+
+(Images/214.png)
 
 **Explanation:**
 This command lists all nodes in the Kubernetes cluster. The single node "ccse-lab1-control-plane" is shown with a status of "Ready", indicating it's functioning properly.
@@ -441,7 +469,9 @@ kubectl create namespace dev
 namespace/dev created
 ```
 
-**Evidence:** Screenshot 215.png
+**Evidence:**
+
+(Images/215.png)
 
 **Explanation:**
 This command creates a namespace called "dev" which will be used to isolate resources and apply specific RBAC policies. Namespaces provide logical separation within a Kubernetes cluster.
@@ -460,7 +490,9 @@ kubectl create namespace prod
 namespace/prod created
 ```
 
-**Evidence:** Screenshot 216.png
+**Evidence:**
+
+(Images/216.png)
 
 **Explanation:**
 This command creates a "prod" namespace for production resources, demonstrating environment separation within the cluster.
@@ -486,7 +518,9 @@ local-path-storage    Active   5m24s
 prod                  Active   11s
 ```
 
-**Evidence:** Screenshot 217.png
+**Evidence:**
+
+(Images/217.png)
 
 **Explanation:**
 This command displays all namespaces in the cluster, including the newly created "dev" and "prod" namespaces along with default Kubernetes system namespaces.
@@ -505,7 +539,9 @@ kubectl create serviceaccount dev-user -n dev
 serviceaccount/dev-user created
 ```
 
-**Evidence:** Screenshot 218.png
+**Evidence:**
+
+(Images/218.png)
 
 **Explanation:**
 This command creates a service account named "dev-user" in the "dev" namespace. Service accounts provide an identity for processes running in pods and are used for authentication and authorization.
@@ -524,7 +560,9 @@ kubectl create role pod-reader -n dev --verb=get,list,watch --resource=pods
 role.rbac.authorization.k8s.io/pod-reader created
 ```
 
-**Evidence:** Screenshot 219.png
+**Evidence:**
+
+(Images/219.png)
 
 **Explanation:**
 This command creates a Role named "pod-reader" in the "dev" namespace with specific permissions:
@@ -546,7 +584,9 @@ kubectl create rolebinding dev-user-binding -n dev --role=pod-reader --serviceac
 rolebinding.rbac.authorization.k8s.io/dev-user-binding created
 ```
 
-**Evidence:** Screenshot 220.png
+**Evidence:**
+
+(Images/220.png)
 
 **Explanation:**
 This command creates a RoleBinding that associates the "pod-reader" role with the "dev-user" service account in the "dev" namespace. This grants the service account the permissions defined in the role.
@@ -565,7 +605,9 @@ kubectl auth can-i list pods -n dev --as=system:serviceaccount:dev:dev-user
 yes
 ```
 
-**Evidence:** Screenshot 221.png
+**Evidence:**
+
+(Images/221.png)
 
 **Explanation:**
 This command tests whether the dev-user service account has permission to list pods in the "dev" namespace. The output "yes" confirms that the permission is granted as configured in the role.
@@ -584,7 +626,9 @@ kubectl auth can-i delete pods -n dev --as=system:serviceaccount:dev:dev-user
 no
 ```
 
-**Evidence:** Screenshot 222.png
+**Evidence:**
+
+(Images/222.png)
 
 **Explanation:**
 This command tests whether the dev-user service account can delete pods in the "dev" namespace. The output "no" confirms that delete permissions are not granted, demonstrating proper RBAC configuration and the principle of least privilege.
@@ -603,7 +647,9 @@ kubectl auth can-i list pods -n prod --as=system:serviceaccount:dev:dev-user
 no
 ```
 
-**Evidence:** Screenshot 223.png
+**Evidence:**
+
+(Images/223.png)
 
 **Explanation:**
 This command verifies that the dev-user service account cannot list pods in the "prod" namespace. This demonstrates namespace-level isolation where the role is only effective within the "dev" namespace.
@@ -637,7 +683,9 @@ subjects:
   namespace: dev
 ```
 
-**Evidence:** Screenshot 224.png
+**Evidence:**
+
+(Images/224.png)
 
 **Explanation:**
 This command displays the complete YAML configuration of the RoleBinding, showing:
@@ -699,12 +747,6 @@ In this lab, we successfully completed the following tasks:
    - Container orchestration and cluster management
    - Security as a fundamental aspect of cloud architecture
 
-### Challenges Encountered
-
-1. **Docker Container Conflict:** The LocalStack container name was already in use, demonstrating the importance of resource cleanup and naming conventions.
-
-2. **Kubernetes Cluster Initialization Error:** The initial cluster creation encountered an exit status 139 error, which was resolved, highlighting the need for adequate system resources.
-
 ### Real-World Applications
 
 The skills demonstrated in this lab are directly applicable to:
@@ -713,13 +755,5 @@ The skills demonstrated in this lab are directly applicable to:
 - Implementing security controls in Kubernetes deployments
 - Following compliance and security best practices
 - DevOps and platform engineering workflows
-
-### Future Considerations
-
-- Implementing custom IAM policies for more granular control
-- Exploring ClusterRoles and ClusterRoleBindings for cluster-wide permissions
-- Integrating external authentication systems (OIDC, LDAP)
-- Implementing pod security policies and network policies
-- Auditing and monitoring access patterns
 
 ---
