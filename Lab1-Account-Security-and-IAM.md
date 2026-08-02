@@ -1,9 +1,10 @@
 # Lab 1: Account Security and IAM
 
-## Student Information
-- **Lab Title:** Account Security and IAM
-- **Course Code:** IKB42603
-- **Date:** August 2, 2026
+**Course:** IKB42603 Cloud Computing  
+**Lab:** Lab 1 - Account Security and IAM
+**Date:** August 2, 2026  
+**Student Name:** Muhammad Daniel Firdaus  
+**Student ID:** 52215225183
 
 ---
 
@@ -722,5 +723,3 @@ The skills demonstrated in this lab are directly applicable to:
 - Auditing and monitoring access patterns
 
 ---
-
-**End of Report**
