@@ -310,9 +310,9 @@ aws --endpoint-url=http://localhost:4566 iam create-access-key --user-name Analy
 {
   "AccessKey": {
     "UserName": "Analyst_Daniel",
-    "AccessKeyId": "LKIAQAAAAAACYBSB5U7",
+    "AccessKeyId": "XXXXXXXXXX",
     "Status": "Active",
-    "SecretAccessKey": "FSmqc5oTdQIYy02/cIk/DGG+skdTRIt0SkUC2CAG",
+    "SecretAccessKey": "XXXXXXXXXXX",
     "CreateDate": "2026-08-02T06:14:20.723536+00:00"
   }
 }
@@ -338,7 +338,7 @@ aws --endpoint-url=http://localhost:4566 iam list-access-keys --user-name Analys
   "AccessKeyMetadata": [
     {
       "UserName": "Analyst_Daniel",
-      "AccessKeyId": "LKIAQAAAAAACYBSB5U7",
+      "AccessKeyId": "XXXXXXXXXXXX",
       "Status": "Active",
       "CreateDate": "2026-08-02T06:14:20.723536+00:00"
     }
