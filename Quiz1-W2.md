@@ -14,7 +14,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 1](Q1.1.png)
+![Question 1](Images/Q1.1.png)
 
 ---
 
@@ -28,7 +28,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 2](Q1.2.png)
+![Question 2](Images/Q1.2.png)
 
 ---
 
@@ -42,7 +42,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 3](Q1.3.png)
+![Question 3](Images/Q1.3.png)
 
 ---
 
@@ -56,7 +56,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 4](Q1.4.png)
+![Question 4](Images/Q1.4.png)
 
 ---
 
@@ -70,7 +70,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 5](Q1.5.png)
+![Question 5](Images/Q1.5.png)
 
 ---
 
@@ -84,7 +84,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 6](Q1.6.png)
+![Question 6](Images/Q1.6.png)
 
 ---
 
@@ -98,7 +98,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 7](Q1.7.png)
+![Question 7](Images/Q1.7.png)
 
 ---
 
@@ -112,7 +112,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 8](Q1.8.png)
+![Question 8](Images/Q1.8.png)
 
 ---
 
@@ -126,7 +126,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 9](Q1.9.png)
+![Question 9](Images/Q1.9.png)
 
 ---
 
@@ -140,7 +140,7 @@
 
 **Status:** Correct (1/1)
 
-![Question 10](Q1.10.png)
+![Question 10](Images/Q1.10.png)
 
 ---
 
