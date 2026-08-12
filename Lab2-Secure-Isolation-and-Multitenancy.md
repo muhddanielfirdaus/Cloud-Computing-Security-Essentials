@@ -274,7 +274,7 @@ spec:
 
 ### Evidence:
 
-> 📸 **[INSERT IMAGE 307.png HERE — Step 2.3: probe.yaml / resource requests]**
+![Resource Quota Enforcement](Images/307.png)
 
 ```yaml
 apiVersion: v1
@@ -311,7 +311,7 @@ kubectl apply -f probe.yaml
 
 ### Evidence:
 
-> 📸 **[INSERT IMAGE 308.png HERE — Step 2.3: pod/probe created]**
+![Pod/Probe Created](Images/308.png)
 
 ```
 pod/probe created
@@ -329,7 +329,7 @@ kubectl get pod probe -n tenant-a
 
 ### Evidence:
 
-> 📸 **[INSERT IMAGE 309.png HERE — Step 2.3: probe pod status]**
+![Pod/Probe Status](Images/309.png)
 
 ```
 NAME    READY   STATUS   RESTARTS   AGE
@@ -346,7 +346,7 @@ kubectl logs probe -n tenant-a
 
 ### Evidence:
 
-> 📸 **[INSERT IMAGE 310.png HERE — Step 2.3: probe pod logs / HTTP 000]**
+![Pod/Probe Logs](Images/310.png)
 
 ```
 HTTP 000
@@ -393,7 +393,7 @@ kubectl get networkpolicy -A
 
 ### Evidence:
 
-> 📸 **[INSERT IMAGE 311.png HERE — Step 3.2: network policy verification]**
+![Network Policy Verification](Images/311.png)
 
 ```
 NAMESPACE   NAME                    POD-SELECTOR   AGE
@@ -424,7 +424,7 @@ kubectl describe resourcequota tenant-a-quota -n tenant-a
 
 ### Evidence:
 
-> 📸 **[INSERT IMAGE 312.png HERE — Step 3.4: resource quota status]**
+![Resource Quota Status](Images/312.png)
 
 ```
 Name:            tenant-a-quota
@@ -518,7 +518,7 @@ kubectl auth can-i get secrets -n tenant-a --as=system:serviceaccount:tenant-a:t
 
 ### Evidence:
 
-> 📸 **[INSERT IMAGE 313.png HERE — Step 4.4: RBAC permission = yes]**
+![RBAC Permission Yes](Images/313.png)
 
 ```
 yes
@@ -536,7 +536,7 @@ kubectl auth can-i get secrets -n tenant-b --as=system:serviceaccount:tenant-a:t
 
 ### Evidence:
 
-> 📸 **[INSERT IMAGE 314.png HERE — Step 4.4: RBAC permission = no]**
+![RBAC Permission No](Images/314.png)
 
 ```
 no
@@ -580,7 +580,7 @@ This command:
 
 ### Evidence:
 
-> 📸 **[INSERT IMAGE 315.png HERE — Step 5.2: sensitive data test]**
+![Sensitive Data Test](Images/315.png)
 
 ```
 Unable to find image 'alpine:latest' locally
