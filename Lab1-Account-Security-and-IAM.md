@@ -1,8 +1,8 @@
 # Lab 1: Account Security and IAM
 
 **Course:** IKB42603 Cloud Computing  
-**Lab:** Lab 1 - Account Security and IAM
-**Date:** August 2, 2026 
+**Lab:** Lab 1 - Account Security and IAM  
+**Date:** August 2, 2026  
 **Student Name:** Muhammad Daniel Firdaus  
 **Student ID:** 52215225183
 
