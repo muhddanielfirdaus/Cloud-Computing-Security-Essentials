@@ -236,24 +236,6 @@ spec:
 
 ![Resource Quota Enforcement](Images/307.png)
 
-Apply the pod manifest:
-
-```bash
-kubectl apply -f probe.yaml
-```
-
-### Evidence:
-
-![Pod/Probe Created](Images/308.png)
-
-```
-pod/probe created
-```
-
-**Analysis:** The pod was successfully created because its requested CPU and memory are within the limits defined by `tenant-a-quota`. This confirms that the namespace has sufficient quota available for the pod.
-
-**Note:** This result demonstrates that the requested resources are permitted by the quota. It does not by itself demonstrate a quota violation because the pod's requests are below the configured limits.
-
 **Check the pod status:**
 
 ```bash
