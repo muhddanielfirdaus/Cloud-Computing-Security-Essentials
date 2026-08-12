@@ -1,8 +1,10 @@
 # Lab 2: Secure Isolation and Multitenancy
 
-**Course:** IKB42603 - Cloud Computing  
-**Lab Title:** Secure Isolation and Multitenancy  
-**Date:** August 12, 2026
+**Course:** IKB42603 Cloud Computing  
+**Lab:** Lab 2 - Secure Isolation and Multitenancy 
+**Date:** August 12, 2026  
+**Student Name:** Muhammad Daniel Firdaus  
+**Student ID:** 52215225183
 
 ---
 
@@ -56,7 +58,7 @@ kubectl get nodes
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 301.png HERE - Shows the output of `kubectl get nodes` command**
+![Verify Cluster](Images/301.png)
 
 ```
 NAME                      STATUS   ROLES           AGE    VERSION
@@ -105,7 +107,7 @@ kubectl get pods,svc -n tenant-a
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 302.png HERE - Shows pods and services in tenant-a namespace**
+![Tenant-a Deployment](Images/302.png)
 
 ```
 NAME                              READY   STATUS    RESTARTS   AGE
@@ -127,7 +129,7 @@ kubectl get pods,svc -n tenant-b
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 303.png HERE - Shows pods and services in tenant-b namespace**
+![Tenant-b Deployment](Images/303.png)
 
 ```
 NAME                              READY   STATUS    RESTARTS   AGE
@@ -151,7 +153,7 @@ kubectl get svc web -n tenant-b -o jsonpath='{.spec.clusterIP}'
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 304.png HERE - Shows the extracted ClusterIP address**
+![ClusterIP address](Images/304.png)
 
 ```
 10.96.203.158
@@ -171,7 +173,7 @@ kubectl -n tenant-a run probe --rm -it --image=curlimages/curl --restart=Never -
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 305.png HERE - Shows HTTP 200 response indicating successful connection**
+![Cross-Namespace Connectivity](Images/305.png)
 
 ```
 HTTP 200
@@ -220,7 +222,7 @@ kubectl describe resourcequota tenant-a-quota -n tenant-a
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 306.png HERE - Shows resource quota limits and current usage**
+![Verify Resource](Images/306.png)
 
 ```
 Name:            tenant-a-quota
@@ -272,7 +274,7 @@ spec:
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 307.png HERE - Shows the probe.yaml file content with resource requests**
+![Test Resource Quota](Images/307.png)
 
 ```yaml
 apiVersion: v1
@@ -311,7 +313,7 @@ kubectl apply -f probe.yaml
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 308.png HERE - Shows pod creation confirmation message**
+![Pod Creation Confirmation](Images/308.png)
 
 ```
 pod/probe created
@@ -329,7 +331,7 @@ kubectl get pod probe -n tenant-a
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 309.png HERE - Shows pod in Error state**
+![Pod Error](Images/309.png)
 
 ```
 NAME    READY   STATUS   RESTARTS   AGE
@@ -348,7 +350,7 @@ kubectl logs probe -n tenant-a
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 310.png HERE - Shows HTTP 000 error in logs**
+![Pod Logs](Images/310.png)
 
 ```
 HTTP 000
@@ -397,7 +399,7 @@ kubectl get networkpolicy -A
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 311.png HERE - Shows network policy in tenant-b namespace**
+![Verify Network Policy](Images/311.png)
 
 ```
 NAMESPACE   NAME                    POD-SELECTOR   AGE
@@ -426,7 +428,7 @@ kubectl describe resourcequota tenant-a-quota -n tenant-a
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 312.png HERE - Shows updated resource quota after probe pod deletion**
+![Verify Quota Status](Images/312.png)
 
 ```
 Name:            tenant-a-quota
@@ -520,7 +522,7 @@ kubectl auth can-i get secrets -n tenant-a --as=system:serviceaccount:tenant-a:t
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 313.png HERE - Shows "yes" response for tenant-a access**
+![RBAC Permission Yes](Images/313.png)
 
 ```
 yes
@@ -538,7 +540,7 @@ kubectl auth can-i get secrets -n tenant-b --as=system:serviceaccount:tenant-a:t
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 314.png HERE - Shows "no" response for tenant-b access**
+![RBAC Permission No](Images/314.png)
 
 ```
 no
@@ -582,7 +584,7 @@ This command:
 
 ### Evidence:
 
-**🖼️ PLACE SCREENSHOT 315.png HERE - Shows docker pulling alpine image and executing the data test**
+![Sensitive Data Writeup](Images/315.png)
 
 ```
 Unable to find image 'alpine:latest' locally
@@ -824,216 +826,5 @@ This lab successfully demonstrated multiple layers of isolation and security in 
    - **Issue**: Simple file deletion may leave recoverable data
    - **Solution**: Use secure deletion methods and encryption
    - **Lesson**: Storage-level security is critical for sensitive data
-
----
-
-### Future Enhancements
-
-To further strengthen the multitenancy setup, consider:
-
-1. **Pod Security Standards**
-   - Implement PSS/PSA for pod-level security
-   - Enforce restricted profiles for tenant workloads
-
-2. **Service Mesh Integration**
-   - Deploy Istio or Linkerd for advanced traffic management
-   - Implement mutual TLS between services
-   - Fine-grained authorization policies
-
-3. **Advanced Monitoring**
-   - Deploy Prometheus for metrics collection
-   - Implement Grafana dashboards per tenant
-   - Alert on security policy violations
-
-4. **Admission Control**
-   - Deploy OPA Gatekeeper or Kyverno
-   - Enforce custom policies (image sources, labels, annotations)
-   - Validate resource requests against quotas
-
-5. **Node Isolation**
-   - Use node pools for different tenant tiers
-   - Implement taints and tolerations
-   - Dedicated nodes for sensitive workloads
-
-6. **Automated Testing**
-   - Regular penetration testing
-   - Automated isolation validation
-   - Chaos engineering for resilience testing
-
-7. **Multi-Cluster Strategy**
-   - Evaluate cluster-per-tenant for hard multi-tenancy
-   - Implement cluster federation
-   - Cross-cluster service discovery
-
----
-
-### Lab Completion Checklist
-
-- [x] Created isolated namespaces for tenant-a and tenant-b
-- [x] Deployed applications in separate namespaces
-- [x] Verified namespace isolation (logical separation)
-- [x] Tested cross-namespace connectivity without network policies
-- [x] Implemented resource quotas for tenant-a
-- [x] Verified quota enforcement with pod creation
-- [x] Configured default-deny network policy for tenant-b
-- [x] Verified network isolation between tenants
-- [x] Created service account with limited permissions
-- [x] Tested RBAC isolation between namespaces
-- [x] Demonstrated data isolation with Docker volumes
-- [x] Performed cluster cleanup
-
----
-
-### Additional Resources
-
-1. **Kubernetes Documentation**
-   - Namespaces: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-   - Resource Quotas: https://kubernetes.io/docs/concepts/policy/resource-quotas/
-   - Network Policies: https://kubernetes.io/docs/concepts/services-networking/network-policies/
-   - RBAC: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
-
-2. **Multi-Tenancy Best Practices**
-   - CNCF Multi-Tenancy WG: https://github.com/kubernetes-sigs/multi-tenancy
-   - Hierarchical Namespaces: https://github.com/kubernetes-sigs/hierarchical-namespaces
-
-3. **Security Tools**
-   - Open Policy Agent: https://www.openpolicyagent.org/
-   - Kyverno: https://kyverno.io/
-   - Falco (Runtime Security): https://falco.org/
-
-4. **Network Policies**
-   - Network Policy Editor: https://editor.cilium.io/
-   - Network Policy Recipes: https://github.com/ahmetb/kubernetes-network-policy-recipes
-
----
-
-## Appendix: Complete YAML Manifests
-
-### A. Resource Quota (tenant-a-quota.yaml)
-
-```yaml
-apiVersion: v1
-kind: ResourceQuota
-metadata:
-  name: tenant-a-quota
-  namespace: tenant-a
-spec:
-  hard:
-    pods: "5"
-    requests.cpu: "1"
-    requests.memory: 512Mi
-```
-
----
-
-### B. Network Policy (tenant-b-network-policy.yaml)
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: default-deny-ingress
-  namespace: tenant-b
-spec:
-  podSelector: {}
-  policyTypes:
-  - Ingress
-```
-
----
-
-### C. RBAC Role (tenant-a-role.yaml)
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: tenant-a-role
-  namespace: tenant-a
-rules:
-- apiGroups: [""]
-  resources: ["pods", "services"]
-  verbs: ["get", "list", "watch"]
-- apiGroups: [""]
-  resources: ["secrets"]
-  verbs: ["get"]
-```
-
----
-
-### D. RBAC RoleBinding (tenant-a-rolebinding.yaml)
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: tenant-a-rolebinding
-  namespace: tenant-a
-subjects:
-- kind: ServiceAccount
-  name: tenant-a-user
-  namespace: tenant-a
-roleRef:
-  kind: Role
-  name: tenant-a-role
-  apiGroup: rbac.authorization.k8s.io
-```
-
----
-
-### E. Probe Pod with Resources (probe.yaml)
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: probe
-  namespace: tenant-a
-spec:
-  restartPolicy: Never
-  containers:
-  - name: probe
-    image: curlimages/curl
-    resources:
-      requests:
-        cpu: 100m
-        memory: 64Mi
-    command:
-    - curl
-    - -s
-    - -m
-    - "5"
-    - http://10.96.203.158
-    - -o
-    - /dev/null
-    - -w
-    - "HTTP %{http_code}\n"
-```
-
----
-
-**End of Lab Report**
-
----
-
-## Quick Screenshot Reference
-
-| Screenshot | Location in Report | What It Shows |
-|------------|-------------------|---------------|
-| 301.png | Lab Environment Setup | Cluster node status |
-| 302.png | Part 1, Step 1.3 | Tenant-a pods and services |
-| 303.png | Part 1, Step 1.3 | Tenant-b pods and services |
-| 304.png | Part 1, Step 1.4 | Service IP extraction |
-| 305.png | Part 1, Step 1.5 | Cross-namespace connectivity test |
-| 306.png | Part 2, Step 2.2 | Resource quota details |
-| 307.png | Part 2, Step 2.3 | Probe pod YAML manifest |
-| 308.png | Part 2, Step 2.3 | Pod creation confirmation |
-| 309.png | Part 2, Step 2.3 | Pod error status |
-| 310.png | Part 2, Step 2.3 | Pod logs |
-| 311.png | Part 3, Step 3.2 | Network policy list |
-| 312.png | Part 3, Step 3.4 | Updated quota status |
-| 313.png | Part 4, Step 4.4 | RBAC allow (tenant-a) |
-| 314.png | Part 4, Step 4.4 | RBAC deny (tenant-b) |
-| 315.png | Part 5, Step 5.2 | Docker volume data test |
 
 ---
