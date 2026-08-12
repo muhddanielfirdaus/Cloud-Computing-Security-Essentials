@@ -1,7 +1,7 @@
 # Lab 2: Secure Isolation and Multitenancy
 
 **Course:** IKB42603 Cloud Computing  
-**Lab:** Lab 2 - Secure Isolation and Multitenancy
+**Lab:** Lab 2 - Secure Isolation and Multitenancy  
 **Date:** August 12, 2026  
 **Student Name:** Muhammad Daniel Firdaus  
 **Student ID:** 52215225183
