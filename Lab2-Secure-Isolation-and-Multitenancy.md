@@ -705,3 +705,32 @@ This lab successfully demonstrated multiple layers of isolation and security in 
    - **Lesson**: Storage-level security is critical for sensitive data
 
 ---
+
+## Short Answer Questions
+
+### Q1. Why can containers in different namespaces reach each other by default, and why is that dangerous in multi-tenant cloud?
+
+Containers in different Kubernetes namespaces can communicate by default because the namespaces provide logical separation but they do not automatically block network traffic between tenants. Without a NetworkPolicy, a pod in one namespace can reach a service in another namespace. This is dangerous in a multi-tenant cloud because one tenant could access another tenant's applications or services without authorization.
+
+### Q2. Explain the default-deny principle and how your NetworkPolicy implements it.
+
+The default-deny principle means that all network traffic is blocked unless it is specifically allowed. In this lab, the `default-deny-ingress` NetworkPolicy is applied to `tenant-b` with an empty `podSelector`, which applies the policy to all pods in that namespace. As a result, incoming traffic from `tenant-a` is blocked unless an explicit rule is added to allow it. This demonstrates network isolation between tenants.
+
+### Q3. How do virtual machines and containers differ in isolation strength? When would you add a VM boundary?
+
+Virtual machines provide stronger isolation because each VM has its own operating system kernel, while containers share the host operating system kernel. Containers are therefore more lightweight but generally provide weaker isolation. A VM boundary should be added when tenants are untrusted, stronger security isolation is required or workloads have higher security and compliance requirements.
+
+### Q4. What is data remanence, and why is cryptographic erasure the preferred cloud solution?
+
+Data remanence is the persistence of data remnants even after the data has been deleted. In cloud environments, users usually do not control the physical storage blocks where their data is stored. Therefore, cryptographic erasure is preferred because destroying the encryption key makes the remaining encrypted data unreadable, even if physical copies still exist.
+
+### Q5. Which of the three isolation dimensions (compute, network, storage) did each task exercise?
+
+| Task | Isolation Dimension | Purpose |
+|------|---------------------|---------|
+| Task 1 | Compute | Separates Tenant A and Tenant B using Kubernetes namespaces. |
+| Task 2 | Network | Demonstrates that cross-tenant communication is possible by default. |
+| Task 3 | Compute | Uses ResourceQuota to limit resource consumption by Tenant A. |
+| Task 4 | Network | Uses NetworkPolicy to block cross-tenant network traffic. |
+| Task 5 | Storage | Uses per-tenant secrets and RBAC to prevent unauthorized access to another tenant's data. |
+| Task 6 | Storage | Demonstrates data remanence and secure deletion. |
