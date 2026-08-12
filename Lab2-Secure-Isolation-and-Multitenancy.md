@@ -60,11 +60,6 @@ kubectl get nodes
 
 ![Verify Cluster](Images/301.png)
 
-```
-NAME                      STATUS   ROLES           AGE    VERSION
-ccse-lab2-control-plane   Ready    control-plane   3m9s   v1.30.0
-```
-
 **Analysis:** The cluster is successfully running with a single control plane node in Ready status, using Kubernetes version v1.30.0.
 
 ---
@@ -109,14 +104,6 @@ kubectl get pods,svc -n tenant-a
 
 ![Tenant-a Deployment](Images/302.png)
 
-```
-NAME                              READY   STATUS    RESTARTS   AGE
-pod/web-7c56dcdb9b-hxfjk          1/1     Running   0          111s
-
-NAME           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-service/web    ClusterIP   10.96.203.255   <none>        80/TCP    83s
-```
-
 **Analysis:** Tenant-a has successfully deployed a web pod that is running and a ClusterIP service exposing port 80.
 
 ---
@@ -130,14 +117,6 @@ kubectl get pods,svc -n tenant-b
 ### Evidence:
 
 ![Tenant-b Deployment](Images/303.png)
-
-```
-NAME                              READY   STATUS    RESTARTS   AGE
-pod/web-7c56dcdb9b-p6b9t          1/1     Running   0          119s
-
-NAME           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-service/web    ClusterIP   10.96.203.158   <none>        80/TCP    90s
-```
 
 **Analysis:** Tenant-b also has a running web pod and service. Note that both namespaces can have resources with the same name (web) because they are isolated by namespace.
 
@@ -155,10 +134,6 @@ kubectl get svc web -n tenant-b -o jsonpath='{.spec.clusterIP}'
 
 ![ClusterIP address](Images/304.png)
 
-```
-10.96.203.158
-```
-
 **Analysis:** The service in tenant-b is accessible at IP address 10.96.203.158 within the cluster.
 
 ---
@@ -174,11 +149,6 @@ kubectl -n tenant-a run probe --rm -it --image=curlimages/curl --restart=Never -
 ### Evidence:
 
 ![Cross-Namespace Connectivity](Images/305.png)
-
-```
-HTTP 200
-pod "probe" deleted from tenant-a namespace
-```
 
 **Analysis:** Without network policies in place, pods from tenant-a can successfully communicate with services in tenant-b (HTTP 200 response). This demonstrates that **namespace isolation alone does NOT provide network-level security**. We need network policies to enforce isolation.
 
@@ -224,16 +194,6 @@ kubectl describe resourcequota tenant-a-quota -n tenant-a
 
 ![Verify Resource](Images/306.png)
 
-```
-Name:            tenant-a-quota
-Namespace:       tenant-a
-Resource         Used   Hard
---------         ----   ----
-pods             1      5
-requests.cpu     0      1
-requests.memory  0      512Mi
-```
-
 **Analysis:** 
 - Maximum 5 pods allowed in tenant-a (currently 1 in use)
 - Maximum 1 CPU core can be requested (currently 0 used because existing pods don't have resource requests)
@@ -275,33 +235,6 @@ spec:
 ### Evidence:
 
 ![Resource Quota Enforcement](Images/307.png)
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: probe
-  namespace: tenant-a
-spec:
-  restartPolicy: Never
-  containers:
-  - name: probe
-    image: curlimages/curl
-    resources:
-      requests:
-        cpu: 100m
-        memory: 64Mi
-    command:
-    - curl
-    - -s
-    - -m
-    - "5"
-    - http://10.96.203.158
-    - -o
-    - /dev/null
-    - -w
-    - "HTTP %{http_code}\n"
-```
 
 Apply the pod manifest:
 
@@ -395,11 +328,6 @@ kubectl get networkpolicy -A
 
 ![Network Policy Verification](Images/313.png)
 
-```
-NAMESPACE   NAME                    POD-SELECTOR   AGE
-tenant-b    default-deny-ingress    <none>         15m
-```
-
 **Analysis:** The default-deny-ingress policy is active in tenant-b namespace with no pod selector (applies to all pods). This policy blocks all ingress traffic from other namespaces, including tenant-a.
 
 ---
@@ -425,16 +353,6 @@ kubectl describe resourcequota tenant-a-quota -n tenant-a
 ### Evidence:
 
 ![Resource Quota Status](Images/313.png)
-
-```
-Name:            tenant-a-quota
-Namespace:       tenant-a
-Resource         Used   Hard
---------         ----   ----
-pods             1      5
-requests.cpu     0      1
-requests.memory  0      512Mi
-```
 
 **Analysis:** The quota status shows the resources currently counted against `tenant-a`. The existing web deployment remains within the configured quota, while the completed probe pod is no longer contributing to the current usage. This confirms that Kubernetes continuously tracks quota usage as resources are created and removed.
 
@@ -520,10 +438,6 @@ kubectl auth can-i get secrets -n tenant-a --as=system:serviceaccount:tenant-a:t
 
 ![RBAC Permission Yes](Images/309.png)
 
-```
-yes
-```
-
 **Analysis:** The service account has permission to access secrets in its own namespace (tenant-a) because the Role explicitly grants this permission.
 
 ---
@@ -537,10 +451,6 @@ kubectl auth can-i get secrets -n tenant-b --as=system:serviceaccount:tenant-a:t
 ### Evidence:
 
 ![RBAC Permission No](Images/310.png)
-
-```
-no
-```
 
 **Analysis:** The service account **cannot** access secrets in tenant-b. This demonstrates proper RBAC isolation - tenant-a's service account has no permissions in tenant-b's namespace.
 
@@ -581,17 +491,6 @@ This command:
 ### Evidence:
 
 ![Sensitive Data Test](Images/311.png)
-
-```
-Unable to find image 'alpine:latest' locally
-latest: Pulling from library/alpine
-55afa1ecc21d: Pull complete
-56dceff1b33: Download complete
-f5124fb579e2: Download complete
-Digest: sha256:28bd5f8b56d1bd0489e8b5bab5b1071ce0bae67db8691198a6eec434494943b8
-Status: Downloaded newer image for alpine:latest
-scan-done
-```
 
 **Analysis:** The sensitive data (SENSITIVE-PATIENT-RECORD) was written to phi.txt and then deleted. The grep command found no remnants in the remaining files, showing "scan-done".
 
