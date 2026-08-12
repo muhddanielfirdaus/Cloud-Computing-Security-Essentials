@@ -329,7 +329,7 @@ kubectl get pod probe -n tenant-a
 
 ### Evidence:
 
-![Pod/Probe Status](Images/309.png)
+![Pod/Probe Status](Images/308.png)
 
 ```
 NAME    READY   STATUS   RESTARTS   AGE
@@ -346,7 +346,7 @@ kubectl logs probe -n tenant-a
 
 ### Evidence:
 
-![Pod/Probe Logs](Images/310.png)
+![Pod/Probe Logs](Images/308.png)
 
 ```
 HTTP 000
@@ -393,7 +393,7 @@ kubectl get networkpolicy -A
 
 ### Evidence:
 
-![Network Policy Verification](Images/311.png)
+![Network Policy Verification](Images/313.png)
 
 ```
 NAMESPACE   NAME                    POD-SELECTOR   AGE
@@ -424,7 +424,7 @@ kubectl describe resourcequota tenant-a-quota -n tenant-a
 
 ### Evidence:
 
-![Resource Quota Status](Images/312.png)
+![Resource Quota Status](Images/313.png)
 
 ```
 Name:            tenant-a-quota
@@ -518,7 +518,7 @@ kubectl auth can-i get secrets -n tenant-a --as=system:serviceaccount:tenant-a:t
 
 ### Evidence:
 
-![RBAC Permission Yes](Images/313.png)
+![RBAC Permission Yes](Images/309.png)
 
 ```
 yes
@@ -536,7 +536,7 @@ kubectl auth can-i get secrets -n tenant-b --as=system:serviceaccount:tenant-a:t
 
 ### Evidence:
 
-![RBAC Permission No](Images/314.png)
+![RBAC Permission No](Images/310.png)
 
 ```
 no
@@ -580,7 +580,7 @@ This command:
 
 ### Evidence:
 
-![Sensitive Data Test](Images/315.png)
+![Sensitive Data Test](Images/311.png)
 
 ```
 Unable to find image 'alpine:latest' locally
@@ -618,6 +618,9 @@ This command:
 1024 bytes (1.0kB) copied, 0.000074 seconds, 13.2MB/s
 wiped
 ```
+### Evidence:
+
+![Sensitive Data Test](Images/312.png)
 
 **Analysis:** This demonstrates that simply deleting files may leave data remnants on disk. In production environments with sensitive data:
 - Use encrypted volumes (e.g., LUKS, cloud provider encryption)
@@ -663,11 +666,9 @@ Remove the Kind cluster to clean up all resources:
 kind delete cluster --name ccse-lab2
 ```
 
-**Expected Output:**
-```
-Deleting cluster "ccse-lab2" ...
-Deleted nodes: ["ccse-lab2-control-plane"]
-```
+### Evidence:
+
+![Delete Kubernetes Cluster](Images/314.png)
 
 **Analysis:** This command removes the entire cluster including all namespaces, pods, services, network policies, and other resources.
 
@@ -681,10 +682,9 @@ Clean up the Docker volume used for testing:
 docker volume rm ccse-vol
 ```
 
-**Expected Output:**
-```
-ccse-vol
-```
+### Evidence:
+
+![Remove Docker Volume](Images/315.png)
 
 **Analysis:** This removes the persistent volume and all data stored in it.
 
