@@ -621,3 +621,27 @@ This lab successfully demonstrated comprehensive encryption and key management t
 - OpenSSL: Latest
 - AWS CLI: v2
 - PowerShell: 5.1+
+
+---
+
+## Short-Answer Questions
+
+### Q1. Compare symmetric and asymmetric encryption: speed, key distribution and typical use.
+ 
+Symmetric encryption is faster and is suitable for encrypting large amounts of data but the same secret key must be securely shared between the sender and receiver. Asymmetric encryption is slower but uses a public and private key pair, which makes key distribution easier. Symmetric encryption is commonly used for data encryption while the asymmetric encryption is typically used for key exchange and digital signatures.
+
+### Q2. Why is key management described as the weakest link, not the algorithm?
+
+Strong encryption can still be insecure if the encryption keys are poorly managed. Keys must be securely stored, distributed, rotated, controlled and eventually deleted. If an attacker obtains the key, the encryption can be bypassed regardless of how strong the algorithm is. Therefore, proper key management is critical to maintaining the security of encrypted data.
+
+### Q3. Explain envelope encryption and why only the master key needs hardware-grade protection.
+
+Envelope encryption uses a data encryption key (DEK) to encrypt the actual data, while a master key encrypts or "wraps" the DEK. The DEK can therefore be used for efficient data encryption, while the master key is kept securely in a KMS or hardware-backed system. This means the master key requires the strongest protection because it controls access to the protected data keys.
+
+### Q4. How does cryptographic erasure achieve provable deletion where overwriting cannot (in the cloud)?
+  
+Cryptographic erasure works by destroying or disabling the key required to decrypt the encrypted data. Without the key, the encrypted data becomes unusable even if the physical data still exists in cloud storage. This is more practical in the cloud because the user cannot directly access or overwrite the provider's underlying storage. The lab demonstrates this by disabling Tenant A's key and showing that the wrapped data key can no longer be decrypted.
+
+### Q5. How does a hash chain make a log tamper-evident (link to tamper-proof logs, Week 6)?
+
+A hash chain links each log entry to the hash of the previous entry. If an earlier log entry is modified, its hash changes and causes the following hash values to no longer match the chain. This makes unauthorized changes detectable and provides a tamper-evident audit trail. The lab demonstrates this by including the previous hash when generating the hash for each new log entry.
