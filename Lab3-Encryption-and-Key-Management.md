@@ -1,18 +1,10 @@
 # Lab 3: Encryption and Key Management
-## IKB42603 - Cloud Computing Security
 
----
-
-## Lab Overview
-**Objective:** To understand and implement encryption techniques and key management practices in cloud computing environments.
-
-**Date Performed:** August 21, 2026
-
-**Tools Used:**
-- OpenSSL
-- AWS KMS (Key Management Service) - Local Stack
-- PowerShell
-- Windows Command Line Tools
+**Course:** IKB42603 Cloud Computing  
+**Lab:** Lab 3 - Encryption and Key Management    
+**Date:** August 21, 2026  
+**Student Name:** Muhammad Daniel Firdaus  
+**Student ID:** 52215225183
 
 ---
 
@@ -34,16 +26,6 @@
 
 This lab demonstrates various encryption techniques and key management practices essential for securing data in cloud computing environments. The exercises cover symmetric and asymmetric encryption, digital signatures, and cloud-based key management using AWS KMS.
 
-**Key Concepts Covered:**
-- Symmetric encryption (AES-256-CBC)
-- Asymmetric encryption (RSA)
-- Digital signatures
-- SSL/TLS encryption
-- AWS Key Management Service (KMS)
-- Envelope encryption
-- Key lifecycle management
-- File integrity verification
-
 ---
 
 ## Part 1: Symmetric Encryption with OpenSSL
@@ -59,9 +41,11 @@ PS C:\CCSE-Lab3> Get-Content record.txt
 Patient: Ahmad, Diagnosis: confidential
 ```
 
-**Evidence:** Screenshot 401.png
+### Evidence:
 
-**Description:** Created a text file containing sensitive patient information to be encrypted.
+![Create Sample Data File](Images/401.png)
+
+**Analysis:** Created a text file containing sensitive patient information to be encrypted.
 
 ---
 
@@ -72,17 +56,11 @@ enter AES-256-CBC encryption password:
 Verifying - enter AES-256-CBC encryption password:
 ```
 
-**Evidence:** Screenshot 402.png
+### Evidence:
 
-**Command Breakdown:**
-- `openssl enc`: OpenSSL encryption command
-- `-aes-256-cbc`: Uses AES encryption with 256-bit key in CBC mode
-- `-pbkdf2`: Password-Based Key Derivation Function 2 (secure key derivation)
-- `-salt`: Adds random salt to prevent rainbow table attacks
-- `-in record.txt`: Input plaintext file
-- `-out record.enc`: Output encrypted file
+![Encrypt File Using AES-256-CBC](Images/402.png)
 
-**Result:** The file was successfully encrypted with a password.
+**Analysis:** The file was successfully encrypted with a password.
 
 ---
 
@@ -93,9 +71,11 @@ Salted__öV-ü蹔&#*?ö¤ö·ñöúlT®r'Ëé¯zj
 Þ¿*þA¡pÛúK(éöà(fÜ*qŸ°
 ```
 
-**Evidence:** Screenshot 403.png
+### Evidence:
 
-**Observation:** The encrypted file contains unreadable binary data, confirming successful encryption.
+![Verify Encrypted Content](Images/403.png)
+
+**Analysis:** The encrypted file contains unreadable binary data, confirming successful encryption.
 
 ---
 
@@ -125,17 +105,11 @@ PS C:\CCSE-Lab3> if ((Get-FileHash record.txt -Algorithm SHA256).Hash -eq (Get-F
 MATCH: decryption successful
 ```
 
-**Evidence:** Screenshot 404.png
+### Evidence:
 
-**Observation:** Hash comparison confirms that decrypted content matches the original file exactly, proving successful encryption/decryption cycle.
+![Verify Decryption Successful](Images/404.png)
 
----
-
-### Key Takeaways - Part 1
-- ✅ AES-256-CBC provides strong symmetric encryption
-- ✅ PBKDF2 strengthens password-based encryption
-- ✅ Salt prevents rainbow table attacks
-- ✅ Hash verification ensures data integrity
+**Analysis:** Hash comparison confirms that decrypted content matches the original file exactly, proving successful encryption/decryption cycle.
 
 ---
 
@@ -184,9 +158,11 @@ Mode                LastWriteTime         Length Name
 -a----        18/8/2026   7:33 PM           1732 private.pem
 ```
 
-**Evidence:** Screenshot 405.png
+### Evidence:
 
-**Observation:** Private key file created with 1732 bytes.
+![Generate RSA Private Key](Images/405.png)
+
+**Analysis:** Private key file created with 1732 bytes.
 
 ---
 
@@ -202,9 +178,11 @@ Mode                LastWriteTime         Length Name
 -a----        18/8/2026   7:36 PM            460 public.pem
 ```
 
-**Evidence:** Screenshot 406.png
+### Evidence:
 
-**Observation:** Both private (1732 bytes) and public (460 bytes) keys successfully generated.
+![Verify RSA Key Pair](Images/406.png)
+
+**Analysis:** Both private (1732 bytes) and public (460 bytes) keys successfully generated.
 
 ---
 
@@ -231,23 +209,11 @@ PS C:\CCSE-Lab3> Get-Content record.rsa.txt
 Patient: Ahmad, Diagnosis: confidential
 ```
 
-**Evidence:** Screenshot 407.png
+### Evidence:
 
-**Command Breakdown:**
-- `-decrypt`: Decryption mode
-- `-inkey private.pem`: Private key for decryption
-- `-in record.rsa`: Encrypted input
-- `-out record.rsa.txt`: Decrypted output
+![RSA Encryption and Decryption](Images/407.png)
 
-**Result:** Successfully decrypted using private key, recovering original plaintext.
-
----
-
-### Key Takeaways - Part 2
-- ✅ RSA enables encryption without sharing secret keys
-- ✅ Public key encrypts, private key decrypts
-- ✅ 2048-bit RSA provides strong security
-- ✅ Suitable for encrypting small amounts of data (like encryption keys)
+**Analysis:** Successfully decrypted using private key, recovering original plaintext.
 
 ---
 
@@ -280,24 +246,13 @@ PS C:\CCSE-Lab3> openssl dgst -sha256 -verify public.pem -signature record.sig r
 Verified OK
 ```
 
-**Evidence:** Screenshot 408.png
+### Evidence:
 
-**Command Breakdown:**
-- `-verify public.pem`: Verify using public key
-- `-signature record.sig`: Signature file to verify
-- `record.txt`: Original file
+![Verify Digital Signature](Images/408.png)
 
-**Result:** Signature verification successful, confirming:
+**Analysis:** Signature verification successful, confirming:
 - Data authenticity (signed by holder of private key)
 - Data integrity (content hasn't been modified)
-
----
-
-### Key Takeaways - Part 3
-- ✅ Digital signatures provide non-repudiation
-- ✅ Private key signs, public key verifies
-- ✅ Ensures both authenticity and integrity
-- ✅ Any modification to data invalidates signature
 
 ---
 
@@ -314,22 +269,11 @@ PS C:\CCSE-Lab3> curl.exe -k https://localhost:8443/record.txt
 Patient: Ahmad, Diagnosis: confidential
 ```
 
-**Evidence:** Screenshot 409.png
+### Evidence:
 
-**Command Breakdown:**
-- `curl.exe`: Command-line HTTP client
-- `-k`: Allow insecure SSL connections (self-signed certificate)
-- `https://localhost:8443/record.txt`: HTTPS URL
+![Access HTTPS Endpoint](Images/409.png)
 
-**Observation:** Successfully retrieved data over encrypted HTTPS connection, demonstrating TLS in action.
-
----
-
-### Key Takeaways - Part 4
-- ✅ HTTPS encrypts data in transit using TLS
-- ✅ Protects against eavesdropping and man-in-the-middle attacks
-- ✅ Essential for secure web communications
-- ✅ Combines encryption, authentication, and integrity
+**Analysis:** Successfully retrieved data over encrypted HTTPS connection, demonstrating TLS in action.
 
 ---
 
@@ -345,32 +289,9 @@ Create and manage encryption keys using AWS Key Management Service for cloud-bas
 PS C:\CCSE-Lab3> aws --endpoint-url=http://localhost:4566 kms create-key --description "CCSE tenant-A master key"
 ```
 
-**Evidence:** Screenshot 410.png
+### Evidence:
 
-**Response:**
-```json
-{
-    "KeyMetadata": {
-        "AWSAccountId": "",
-        "KeyId": "",
-        "Arn": "",
-        "CreationDate": "2026-08-21T16:29:59.265806+08:00",
-        "Enabled": true,
-        "Description": "CCSE tenant-A master key",
-        "KeyUsage": "ENCRYPT_DECRYPT",
-        "KeyState": "Enabled",
-        "Origin": "AWS_KMS",
-        "KeyManager": "CUSTOMER",
-        "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
-        "KeySpec": "SYMMETRIC_DEFAULT",
-        "EncryptionAlgorithms": [
-            "SYMMETRIC_DEFAULT"
-        ],
-        "MultiRegion": false,
-        "CurrentKeyMaterialId": "840935888fb85f588aee6a0ecf0235aa840935888fb85f588aee6a0ecf0235aa"
-    }
-}
-```
+![Create Tenant A Master Key](Images/410.png)
 
 **Key Properties:**
 - **KeyUsage:** ENCRYPT_DECRYPT
@@ -391,18 +312,11 @@ PS C:\CCSE-Lab3> aws --endpoint-url=http://localhost:4566 kms encrypt --key-id $
 MzY2ZmHWYTMtZWIzMy00YmRhLWI0NDNdOTA5OTc4NTljZWFmckAMe6vCDVtcBWHKmE4I9bcrGJ1dQbvOpRdM0VQIqLqAZr6ECTCKEIo2GqBWQnh
 ```
 
-**Evidence:** Screenshot 411.png
+### Evidence:
 
-**Observation:** The plaintext was encrypted using the KMS master key and returned as a base64-encoded ciphertext blob.
+![Encrypt Data with KMS](Images/411.png)
 
----
-
-### Key Takeaways - Part 5
-- ✅ AWS KMS provides centralized key management
-- ✅ Keys never leave KMS unencrypted
-- ✅ Automatic key rotation available
-- ✅ Fine-grained access control via IAM policies
-- ✅ Audit trail through CloudTrail logging
+**Analysis:** The plaintext was encrypted using the KMS master key and returned as a base64-encoded ciphertext blob.
 
 ---
 
@@ -418,20 +332,13 @@ Implement envelope encryption pattern where data is encrypted with a data key, a
 PS C:\CCSE-Lab3> aws --endpoint-url=http://localhost:4566 kms generate-data-key --key-id $KEY_A --key-spec AES_256
 ```
 
-**Evidence:** Screenshot 412.png
+### Evidence:
 
-**Response:**
-```json
-{
-    "CiphertextBlob": "",
-    "Plaintext": "",
-    "KeyId": ""
-}
-```
+![Generate Data Encryption Key](Images/412.png)
 
-**Result:** KMS generated:
-- **Plaintext DEK:** Used immediately to encrypt data
-- **Ciphertext DEK:** Encrypted version stored with data
+**Analysis:** KMS generated:
+- Plaintext DEK: Used immediately to encrypt data
+- Ciphertext DEK: Encrypted version stored with data
 
 ---
 
@@ -458,7 +365,9 @@ Mode                LastWriteTime         Length Name
 -a----        21/8/2026   4:36 PM             64 record.env.enc
 ```
 
-**Evidence:** Screenshot 413.png
+### Evidence:
+
+![Verify Encrypted Data](Images/413.png)
 
 ---
 
@@ -473,18 +382,11 @@ Mode                LastWriteTime         Length Name
 -a----        21/8/2026   4:34 PM            158 datakey.enc
 ```
 
-**Evidence:** Screenshot 414.png
+### Evidence:
 
-**Observation:** The data key itself is encrypted and stored (158 bytes), following envelope encryption pattern.
+![Verify Encrypted Data Key](Images/414.png)
 
----
-
-### Key Takeaways - Part 6
-- ✅ Envelope encryption improves performance
-- ✅ Data encrypted with DEK (fast symmetric encryption)
-- ✅ Only DEK encrypted with master key
-- ✅ Reduces load on KMS
-- ✅ Best practice for encrypting large data
+**Analysis:** The data key itself is encrypted and stored (158 bytes), following envelope encryption pattern.
 
 ---
 
@@ -500,32 +402,9 @@ Demonstrate proper key lifecycle management including key rotation and deletion.
 PS C:\CCSE-Lab3> aws --endpoint-url=http://localhost:4566 kms create-key --description "CCSE tenant-B master key"
 ```
 
-**Evidence:** Screenshot 415.png
+### Evidence:
 
-**Response:**
-```json
-{
-    "KeyMetadata": {
-        "AWSAccountId": "",
-        "KeyId": "",
-        "Arn": "",
-        "CreationDate": "2026-08-21T16:39:11.871829+08:00",
-        "Enabled": true,
-        "Description": "CCSE tenant-B master key",
-        "KeyUsage": "ENCRYPT_DECRYPT",
-        "KeyState": "Enabled",
-        "Origin": "AWS_KMS",
-        "KeyManager": "CUSTOMER",
-        "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
-        "KeySpec": "SYMMETRIC_DEFAULT",
-        "EncryptionAlgorithms": [
-            "SYMMETRIC_DEFAULT"
-        ],
-        "MultiRegion": false,
-        "CurrentKeyMaterialId": "7d349bf7995a5d8082d156820ebbd8f17d349bf7995a5d8082d156820ebbd8f1"
-    }
-}
-```
+![Create Tenant B Master Key](Images/415.png)
 
 ---
 
@@ -534,22 +413,14 @@ PS C:\CCSE-Lab3> aws --endpoint-url=http://localhost:4566 kms create-key --descr
 PS C:\CCSE-Lab3> aws --endpoint-url=http://localhost:4566 kms schedule-key-deletion --key-id $KEY_A --pending-window-in-days 7
 ```
 
-**Evidence:** Screenshot 416.png
+### Evidence:
 
-**Response:**
-```json
-{
-    "KeyId": "",
-    "DeletionDate": "2026-08-28T16:40:54.139883+08:00",
-    "KeyState": "PendingDeletion",
-    "PendingWindowInDays": 7
-}
-```
+![Schedule Key Deletion](Images/416.png)
 
 **Key Properties:**
-- **KeyState:** PendingDeletion
-- **DeletionDate:** 2026-08-28 (7 days from scheduling)
-- **PendingWindowInDays:** 7
+- KeyState: PendingDeletion
+- DeletionDate: 2026-08-28 (7 days from scheduling)
+- PendingWindowInDays: 7
 
 **Security Feature:** Mandatory waiting period prevents accidental key deletion.
 
@@ -560,34 +431,11 @@ PS C:\CCSE-Lab3> aws --endpoint-url=http://localhost:4566 kms schedule-key-delet
 PS C:\CCSE-Lab3> aws --endpoint-url=http://localhost:4566 kms describe-key --key-id $KEY_A
 ```
 
-**Evidence:** Screenshot 417.png
+### Evidence:
 
-**Response:**
-```json
-{
-    "KeyMetadata": {
-        "AWSAccountId": "",
-        "KeyId": "",
-        "Arn": "",
-        "CreationDate": "2026-08-21T16:29:59.265806+08:00",
-        "Enabled": false,
-        "Description": "CCSE tenant-A master key",
-        "KeyUsage": "ENCRYPT_DECRYPT",
-        "KeyState": "Disabled",
-        "Origin": "AWS_KMS",
-        "KeyManager": "CUSTOMER",
-        "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
-        "KeySpec": "SYMMETRIC_DEFAULT",
-        "EncryptionAlgorithms": [
-            "SYMMETRIC_DEFAULT"
-        ],
-        "MultiRegion": false,
-        "CurrentKeyMaterialId": "840935888fb85f588aee6a0ecf0235aa840935888fb85f588aee6a0ecf0235aa"
-    }
-}
-```
+![Verify Key Disabled](Images/417.png)
 
-**Observation:** Key state changed to "Disabled" with Enabled: false
+**Analysis:** Key state changed to "Disabled" with Enabled: false.
 
 ---
 
@@ -606,18 +454,11 @@ PS C:\CCSE-Lab3> aws --endpoint-url=http://localhost:4566 kms decrypt --cipherte
 aws: [ERROR]: An error occurred (DisabledException) when calling the Decrypt operation:
 ```
 
-**Evidence:** Screenshot 418.png
+### Evidence:
 
-**Observation:** Decryption operation fails with DisabledException, demonstrating that disabled/deleted keys cannot be used for cryptographic operations.
+![Decrypt with Disabled Key](Images/418.png)
 
----
-
-### Key Takeaways - Part 7
-- ✅ Key deletion has mandatory waiting period (7-30 days)
-- ✅ Prevents accidental data loss
-- ✅ Disabled keys cannot perform cryptographic operations
-- ✅ Key lifecycle management is critical for security
-- ✅ Keys should be rotated regularly
+**Analysis:** Decryption operation fails with DisabledException, demonstrating that disabled/deleted keys cannot be used for cryptographic operations.
 
 ---
 
@@ -637,12 +478,6 @@ Algorithm       Hash                                                            
 SHA256          5896485E6C14988B4B227B04C572032FA844EA40EC25BB4E6C43CC0ED76133B2       C:\CCSE-Lab3\record.txt
 ```
 
-**Evidence:** Screenshot 419.png
-
-**Hash Value:** `5896485E6C14988B4B227B04C572032FA844EA40EC25BB4E6C43CC0ED76133B2`
-
----
-
 #### Step 8.2: Calculate Hash of Tampered File
 ```powershell
 PS C:\CCSE-Lab3> Get-FileHash C:\CCSE-Lab3\tampered.txt -Algorithm SHA256
@@ -652,11 +487,11 @@ Algorithm       Hash                                                            
 SHA256          61CAB18A9EFE6CE43AD4D1752E6AD1B201AE984A3E60B89B60B5158CFCD11343       C:\CCSE-Lab3\tampered...
 ```
 
-**Evidence:** Screenshot 419.png
+### Evidence:
 
-**Hash Value:** `61CAB18A9EFE6CE43AD4D1752E6AD1B201AE984A3E60B89B60B5158CFCD11343`
+![Verify File Hash](Images/419.png)
 
-**Observation:** Different hash values prove that even a small change in file content produces a completely different hash.
+**Analysis:** Different hash values prove that even a small change in file content produces a completely different hash.
 
 ---
 
@@ -674,23 +509,11 @@ file read | 6c3adc61ece69412b338e43d761435e95dbfc9482537f8f600087b0a4c5ad2d3d
 export data | e1470ccfaf43dcab3c17d5710dc9eacbb7ac65c9f522ca98c2c50341b32da68
 ```
 
-**Evidence:** Screenshot 420.png
+### Evidence:
 
-**Observation:** Demonstrates chaining hashes - each hash incorporates the previous value, creating an audit trail similar to blockchain technology.
+![Generate Hash Chain](Images/420.png)
 
-**Hash Chain:**
-1. **login ok:** `573f9af26d45d395a1089ef5fec4d50ccddc17c0ea4269c2c91d90929a820053`
-2. **file read:** `6c3adc61ece69412b338e43d761435e95dbfc9482537f8f600087b0a4c5ad2d3d`
-3. **export data:** `e1470ccfaf43dcab3c17d5710dc9eacbb7ac65c9f522ca98c2c50341b32da68`
-
----
-
-### Key Takeaways - Part 8
-- ✅ Hash functions provide data integrity verification
-- ✅ SHA-256 produces unique fingerprint for data
-- ✅ Any modification changes the hash completely
-- ✅ Hash chains create tamper-evident audit logs
-- ✅ Used in blockchain, digital forensics, and integrity checking
+**Analysis:** Demonstrates chaining hashes - each hash incorporates the previous value, creating an audit trail similar to blockchain technology.
 
 ---
 
@@ -786,19 +609,6 @@ This lab successfully demonstrated comprehensive encryption and key management t
 
 ---
 
-### Technical Skills Acquired
-
-- ✅ OpenSSL command-line encryption tools
-- ✅ AWS KMS operations and concepts
-- ✅ PowerShell scripting for security operations
-- ✅ Cryptographic hash function implementation
-- ✅ Public-key infrastructure (PKI) concepts
-- ✅ Envelope encryption pattern
-- ✅ Key lifecycle management procedures
-- ✅ Data integrity verification techniques
-
----
-
 ### Lab Environment Details
 
 **Operating System:** Windows
@@ -811,89 +621,3 @@ This lab successfully demonstrated comprehensive encryption and key management t
 - OpenSSL: Latest
 - AWS CLI: v2
 - PowerShell: 5.1+
-
----
-
-### References
-
-1. OpenSSL Documentation: https://www.openssl.org/docs/
-2. AWS KMS Developer Guide: https://docs.aws.amazon.com/kms/
-3. NIST Cryptographic Standards: https://csrc.nist.gov/
-4. RFC 5869 - PBKDF2 Specification
-5. RFC 8446 - TLS 1.3 Specification
-
----
-
-### Appendix: Command Reference
-
-#### Symmetric Encryption
-```bash
-# Encrypt
-openssl enc -aes-256-cbc -pbkdf2 -salt -in plaintext.txt -out encrypted.enc
-
-# Decrypt
-openssl enc -aes-256-cbc -pbkdf2 -salt -d -in encrypted.enc -out decrypted.txt
-```
-
-#### Asymmetric Encryption
-```bash
-# Generate key pair
-openssl genrsa -out private.pem 2048
-openssl rsa -in private.pem -pubout -out public.pem
-
-# Encrypt with public key
-openssl pkeyutl -encrypt -pubin -inkey public.pem -in plaintext.txt -out encrypted.bin
-
-# Decrypt with private key
-openssl pkeyutl -decrypt -inkey private.pem -in encrypted.bin -out decrypted.txt
-```
-
-#### Digital Signatures
-```bash
-# Sign
-openssl dgst -sha256 -sign private.pem -out signature.sig file.txt
-
-# Verify
-openssl dgst -sha256 -verify public.pem -signature signature.sig file.txt
-```
-
-#### AWS KMS
-```bash
-# Create key
-aws kms create-key --description "My master key"
-
-# Encrypt data
-aws kms encrypt --key-id $KEY_ID --plaintext "sensitive data"
-
-# Decrypt data
-aws kms decrypt --ciphertext-blob fileb://encrypted.bin
-
-# Generate data key
-aws kms generate-data-key --key-id $KEY_ID --key-spec AES_256
-
-# Schedule deletion
-aws kms schedule-key-deletion --key-id $KEY_ID --pending-window-in-days 7
-```
-
-#### File Hashing
-```powershell
-# PowerShell
-Get-FileHash file.txt -Algorithm SHA256
-
-# Batch processing
-foreach ($file in Get-ChildItem *.txt) {
-    Get-FileHash $file.FullName -Algorithm SHA256
-}
-```
-
----
-
-**Lab Completed Successfully**
-
-**Date:** August 21, 2026  
-**Course:** IKB42603 - Cloud Computing Security  
-**Lab:** Lab 3 - Encryption and Key Management
-
----
-
-*This report demonstrates practical implementation of encryption and key management concepts essential for securing cloud computing environments.*
