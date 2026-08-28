@@ -1,5 +1,10 @@
 # Lab 4: Access Control and Network Security
-## IKB42603 - Cloud Computing Lab Report
+
+**Course:** IKB42603 Cloud Computing  
+**Lab:** Lab 4 - Access Control and Network Security    
+**Date:** August 28, 2026  
+**Student Name:** Muhammad Daniel Firdaus  
+**Student ID:** 52215225183  
 
 ---
 
@@ -17,12 +22,6 @@
 ## Introduction
 
 This lab focuses on implementing and configuring access control and network security in Amazon Web Services (AWS). The lab demonstrates essential security practices including IAM (Identity and Access Management), Security Groups, Network Access Control Lists (NACLs), and VPC (Virtual Private Cloud) configuration to secure cloud resources.
-
-**Lab Information:**
-- **Course:** IKB42603 - Cloud Computing
-- **Lab Number:** Lab 4
-- **Topic:** Access Control and Network Security
-- **Platform:** Amazon Web Services (AWS)
 
 ---
 
@@ -42,12 +41,6 @@ The main objectives of this lab are to:
 
 ## Lab Environment Setup
 
-### Prerequisites
-- Active AWS account with appropriate permissions
-- AWS Management Console access
-- Basic understanding of networking concepts
-- Knowledge of TCP/IP protocols
-
 ### Required AWS Services
 - **IAM (Identity and Access Management)** - User and permission management
 - **VPC (Virtual Private Cloud)** - Network isolation
@@ -66,8 +59,9 @@ The main objectives of this lab are to:
 2. Sign in with provided credentials
 3. Verify access to the AWS console dashboard
 
-**Evidence:**
-![AWS Console Login](500.png)
+### Evidence:
+
+![AWS Console Login](Images/500.png)
 *Figure 1: AWS Management Console - Initial access and dashboard view*
 
 **Observations:**
@@ -84,8 +78,9 @@ The main objectives of this lab are to:
 2. Select "IAM" (Identity and Access Management)
 3. Review the IAM dashboard showing users, groups, and policies
 
-**Evidence:**
-![IAM Dashboard](501.png)
+### Evidence:
+
+![IAM Dashboard](Images/501.png)
 *Figure 2: IAM Dashboard - Overview of identity management resources*
 
 **Key Components Observed:**
@@ -105,8 +100,9 @@ The main objectives of this lab are to:
 4. Add name tag for identification
 5. Review DNS settings and tenancy options
 
-**Evidence:**
-![VPC Configuration](502.png)
+### Evidence:
+
+![VPC Configuration](Images/502.png)
 *Figure 3: VPC Creation - Configuring virtual network parameters*
 
 **Configuration Details:**
@@ -137,8 +133,9 @@ VPC (10.0.0.0/16)
 └── Private Subnet (10.0.2.0/24) - AZ-1a
 ```
 
-**Evidence:**
-![Subnet Configuration](503.png)
+### Evidence:
+
+![Subnet Configuration](Images/503.png)
 *Figure 4: Subnet creation showing network segmentation*
 
 **Subnet Purpose:**
@@ -159,8 +156,9 @@ VPC (10.0.0.0/16)
 4. Configure outbound rules (default: allow all)
 5. Add description and tags
 
-**Evidence:**
-![Security Group Rules](504.png)
+### Evidence:
+
+![Security Group Rules](Images/504.png)
 *Figure 5: Security Group configuration showing inbound and outbound rules*
 
 **Inbound Rules Configuration:**
@@ -195,8 +193,9 @@ VPC (10.0.0.0/16)
 5. Configure outbound rules
 6. Review and apply
 
-**Evidence:**
-![Network ACL Configuration](505.png)
+### Evidence:
+
+![Network ACL Configuration](Images/505.png)
 *Figure 6: Network ACL rules showing subnet-level filtering*
 
 **NACL vs Security Group:**
@@ -234,8 +233,9 @@ VPC (10.0.0.0/16)
 9. Review and launch
 10. Create/select key pair for SSH access
 
-**Evidence:**
-![EC2 Instance Configuration](506.png)
+### Evidence:
+
+![EC2 Instance Configuration](Images/506.png)
 *Figure 7: EC2 instance showing associated security group*
 
 **Instance Configuration:**
@@ -258,8 +258,9 @@ VPC (10.0.0.0/16)
 5. Verify HTTP access is allowed
 6. Document the result
 
-**Evidence:**
-![HTTP Access Test](507.png)
+### Evidence:
+
+![HTTP Access Test](Images/507.png)
 *Figure 8: Successful HTTP access through Security Group and NACL*
 
 **Test Results:**
@@ -287,8 +288,9 @@ The successful HTTP connection confirms that:
 5. Verify connection success
 6. Check source IP matches allowed IP in Security Group
 
-**Evidence:**
-![SSH Access Test](508.png)
+### Evidence:
+
+![SSH Access Test](Images/508.png)
 *Figure 9: SSH connection test showing security rule enforcement*
 
 **Test Scenarios:**
@@ -320,8 +322,9 @@ The successful HTTP connection confirms that:
 4. Remove deny rule
 5. Verify access is restored
 
-**Evidence:**
-![NACL Deny Rule Test](509.png)
+### Evidence:
+
+![NACL Deny Rule Test](Images/509.png)
 *Figure 10: Testing Network ACL deny rules and traffic blocking*
 
 **Test Configuration:**
@@ -355,8 +358,9 @@ Rule 100: ALLOW TCP Port 80 from 0.0.0.0/0
 6. Attempt actions beyond granted permissions
 7. Document access denied scenarios
 
-**Evidence:**
-![IAM Permission Testing](510.png)
+### Evidence:
+
+![IAM Permission Testing](Images/510.png)
 *Figure 11: IAM user access control and permission verification*
 
 **IAM Policy Example:**
@@ -390,26 +394,6 @@ Rule 100: ALLOW TCP Port 80 from 0.0.0.0/0
 - Cannot perform actions outside scope
 - Prevents accidental or malicious changes
 - Audit trail maintained through CloudTrail
-
----
-
-## Results and Screenshots
-
-### Summary of Evidence
-
-All lab activities were successfully completed and documented through screenshots:
-
-1. **500.png** - AWS Console access and initial setup
-2. **501.png** - IAM Dashboard and user management
-3. **502.png** - VPC creation and configuration
-4. **503.png** - Subnet creation and network segmentation
-5. **504.png** - Security Group rule configuration
-6. **505.png** - Network ACL configuration
-7. **506.png** - EC2 instance launch with security settings
-8. **507.png** - HTTP access testing
-9. **508.png** - SSH access control verification
-10. **509.png** - NACL deny rule testing
-11. **510.png** - IAM permission testing and access control
 
 ---
 
@@ -523,23 +507,6 @@ This lab successfully demonstrated the implementation and configuration of AWS a
 6. ✅ Applied principle of least privilege across all layers
 7. ✅ Validated security controls through practical testing
 
-### Skills Acquired
-
-**Technical Skills:**
-- AWS VPC architecture and configuration
-- Security Group rule management
-- Network ACL configuration and rule ordering
-- IAM user and policy management
-- EC2 instance security configuration
-- Network troubleshooting and testing
-
-**Security Skills:**
-- Defense-in-depth implementation
-- Access control design
-- Network segmentation strategies
-- Security rule testing and validation
-- Incident response preparation
-
 ### Real-World Applications
 
 The security practices learned in this lab are directly applicable to:
@@ -563,29 +530,6 @@ The security practices learned in this lab are directly applicable to:
    - Secure CI/CD environments
    - Infrastructure as Code security
    - Automated security testing
-
-### Lessons Learned
-
-1. **Layer Defense Properly:** Multiple security layers provide redundancy
-2. **Test Thoroughly:** Validate both allow and deny scenarios
-3. **Document Everything:** Clear documentation aids troubleshooting
-4. **Start Restrictive:** Easier to open access than to close it
-5. **Monitor Continuously:** Security is an ongoing process
-
-### Recommendations for Production
-
-For production deployments, consider additional measures:
-
-- **Enable VPC Flow Logs:** Capture network traffic for analysis
-- **Implement AWS WAF:** Web application firewall for HTTP/HTTPS
-- **Use AWS Shield:** DDoS protection for applications
-- **Enable GuardDuty:** Threat detection service
-- **Configure CloudTrail:** Comprehensive audit logging
-- **Set up CloudWatch Alarms:** Automated security monitoring
-- **Implement MFA:** Multi-factor authentication for all users
-- **Regular Security Audits:** Automated and manual reviews
-- **Encryption:** At rest and in transit for all data
-- **Backup Strategy:** Regular automated backups
 
 ### Future Enhancements
 
@@ -612,58 +556,24 @@ Potential areas for expanding this lab:
 
 ---
 
-## Appendix
+## Short-Answer Questions
 
-### AWS CLI Commands Reference
+### Q1. Explain the difference between authentication and authorization using Tasks 1 and 3.
+ 
+Authentication is the process of verifying a user's identity, while authorization determines what an authenticated user is allowed to do. In Task 1, the authentication was demonstrated using HTTP Basic Authentication, where the requests without valid credentials returned as 401 Unauthorized, while valid credentials returned as 200 OK. In Task 3, Kubernetes RBAC was used to control permissions, where the developer was allowed to list pods but was denied permission to create deployments and delete pods.
 
-```bash
-# Create VPC
-aws ec2 create-vpc --cidr-block 10.0.0.0/16
+### Q2. Why is MFA so effective, and which attacks does it defeat?
 
-# Create Subnet
-aws ec2 create-subnet --vpc-id vpc-xxxxx --cidr-block 10.0.1.0/24
+MFA is effective because it requires more than one authentication factor, making it harder for the attacker to gain access using only stolen credentials. In this lab, a password was combined with a time-based one-time password (TOTP). Even if an attacker obtains the password, they will still need the valid TOTP code. Therefore, MFA helps defend against credential-based attacks such as stolen passwords and compromised credentials.
 
-# Create Security Group
-aws ec2 create-security-group --group-name Lab4-SG --description "Lab 4 Security Group" --vpc-id vpc-xxxxx
+### Q3. How does network segmentation limit the damage of a compromised web server?
 
-# Add Security Group Rule
-aws ec2 authorize-security-group-ingress --group-id sg-xxxxx --protocol tcp --port 22 --cidr x.x.x.x/32
+Network segmentation limits damage by separating the web, application and database services into different networks. In Task 4, the web server was connected only to the frontend network, while the database was connected only to the backend network. The application server was connected to both networks. Therefore, the web server could not directly access the database, which helps prevent lateral movement and limits the damage if the web server is compromised.
 
-# Create IAM User
-aws iam create-user --user-name lab4-user
+### Q4. What does a default-deny firewall policy achieve, and how does it relate to cloud security groups?
+  
+A default-deny firewall policy blocks all incoming traffic unless it is explicitly allowed by a rule. In Task 5, the INPUT policy was set to DROP, while TCP port 443 was explicitly allowed. This reduces the attack surface by preventing unnecessary network access. This approach is similar to cloud security groups, where only required traffic is explicitly permitted according to the principle of least privilege.
 
-# Attach IAM Policy
-aws iam attach-user-policy --user-name lab4-user --policy-arn arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
-```
+### Q5. List the hardening measures you applied and the attack surface each one removes.
 
-### Troubleshooting Guide
-
-**Issue:** Cannot connect to EC2 instance via SSH
-- Check Security Group allows port 22
-- Verify source IP is correct
-- Confirm NACL allows SSH traffic
-- Check key pair permissions (chmod 400)
-- Verify instance is in running state
-
-**Issue:** HTTP not accessible
-- Verify Security Group allows port 80
-- Check NACL rules for HTTP
-- Confirm web server is running on instance
-- Check route tables for internet gateway
-
-**Issue:** IAM permission denied
-- Verify policy is attached to user/group
-- Check policy syntax in JSON
-- Confirm resource ARNs are correct
-- Review CloudTrail for detailed error
-
----
-
-**Lab Completed By:** [Student Name]  
-**Date:** [Completion Date]  
-**Instructor:** [Instructor Name]  
-**Course:** IKB42603 - Cloud Computing
-
----
-
-*End of Report*
+The container was hardened by running it as a non-root user, using a read-only filesystem, dropping all Linux capabilities, enabling no-new-privileges and using an unprivileged Nginx image. These measures reduce the available privileges and prevent attackers from easily modifying the filesystem or performing privileged operations after compromising the container. A Trivy scan was also performed to identify known vulnerabilities in the container image. The scan identified 2 HIGH vulnerabilities and 0 CRITICAL vulnerabilities.
