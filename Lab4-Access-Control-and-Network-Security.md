@@ -61,7 +61,7 @@ The main objectives of this lab are to:
 
 ### Evidence:
 
-![AWS Console Login](Images/500.png)
+![AWS Console Login](Images/500.png)  
 *Figure 1: AWS Management Console - Initial access and dashboard view*
 
 **Observations:**
@@ -80,7 +80,7 @@ The main objectives of this lab are to:
 
 ### Evidence:
 
-![IAM Dashboard](Images/501.png)
+![IAM Dashboard](Images/501.png)  
 *Figure 2: IAM Dashboard - Overview of identity management resources*
 
 **Key Components Observed:**
@@ -102,7 +102,7 @@ The main objectives of this lab are to:
 
 ### Evidence:
 
-![VPC Configuration](Images/502.png)
+![VPC Configuration](Images/502.png)  
 *Figure 3: VPC Creation - Configuring virtual network parameters*
 
 **Configuration Details:**
@@ -135,7 +135,7 @@ VPC (10.0.0.0/16)
 
 ### Evidence:
 
-![Subnet Configuration](Images/503.png)
+![Subnet Configuration](Images/503.png)  
 *Figure 4: Subnet creation showing network segmentation*
 
 **Subnet Purpose:**
@@ -158,7 +158,7 @@ VPC (10.0.0.0/16)
 
 ### Evidence:
 
-![Security Group Rules](Images/504.png)
+![Security Group Rules](Images/504.png)  
 *Figure 5: Security Group configuration showing inbound and outbound rules*
 
 **Inbound Rules Configuration:**
@@ -195,7 +195,7 @@ VPC (10.0.0.0/16)
 
 ### Evidence:
 
-![Network ACL Configuration](Images/505.png)
+![Network ACL Configuration](Images/505.png)  
 *Figure 6: Network ACL rules showing subnet-level filtering*
 
 **NACL vs Security Group:**
@@ -235,7 +235,7 @@ VPC (10.0.0.0/16)
 
 ### Evidence:
 
-![EC2 Instance Configuration](Images/506.png)
+![EC2 Instance Configuration](Images/506.png)  
 *Figure 7: EC2 instance showing associated security group*
 
 **Instance Configuration:**
@@ -260,7 +260,7 @@ VPC (10.0.0.0/16)
 
 ### Evidence:
 
-![HTTP Access Test](Images/507.png)
+![HTTP Access Test](Images/507.png)  
 *Figure 8: Successful HTTP access through Security Group and NACL*
 
 **Test Results:**
@@ -290,7 +290,7 @@ The successful HTTP connection confirms that:
 
 ### Evidence:
 
-![SSH Access Test](Images/508.png)
+![SSH Access Test](Images/508.png)  
 *Figure 9: SSH connection test showing security rule enforcement*
 
 **Test Scenarios:**
@@ -324,7 +324,7 @@ The successful HTTP connection confirms that:
 
 ### Evidence:
 
-![NACL Deny Rule Test](Images/509.png)
+![NACL Deny Rule Test](Images/509.png)  
 *Figure 10: Testing Network ACL deny rules and traffic blocking*
 
 **Test Configuration:**
@@ -360,7 +360,7 @@ Rule 100: ALLOW TCP Port 80 from 0.0.0.0/0
 
 ### Evidence:
 
-![IAM Permission Testing](Images/510.png)
+![IAM Permission Testing](Images/510.png)  
 *Figure 11: IAM user access control and permission verification*
 
 **IAM Policy Example:**
