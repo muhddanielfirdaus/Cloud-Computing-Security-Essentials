@@ -1,10 +1,10 @@
-# Lab 5: Monitoring, Logging, and Incident Detection
+# Lab 5: Monitoring, Logging and Incident Detection
 
-**Course:** IKB42603 - Cloud Computing  
-**Lab Number:** 5  
+**Course:** IKB42603 Cloud Computing  
+**Lab:** Lab 5 - Monitoring, Logging and Incident Detection   
 **Date:** September 6, 2026  
-**Student Name:** [Your Name]  
-**Student ID:** [Your ID]
+**Student Name:** Muhammad Daniel Firdaus  
+**Student ID:** 52215225183  
 
 ---
 
@@ -56,11 +56,11 @@ CloudWatch Alarms monitor metrics and trigger actions when thresholds are breach
    - Set threshold: Memory > 80%
    - Period: 5 minutes
 
-### Evidence
+### Evidence:
 
 **Screenshot 601.png - CloudWatch Alarms Dashboard:**
 
-![CloudWatch Alarms List](601.png)
+![CloudWatch Alarms List](Images/601.png)
 
 The screenshot shows:
 - Two alarms configured: `CPUHighAlarm` and `MemoryHighAlarm`
@@ -70,7 +70,7 @@ The screenshot shows:
 
 **Screenshot 602.png - Alarm Configuration Details:**
 
-![Alarm Configuration](602.png)
+![Alarm Configuration](Images/602.png)
 
 The screenshot displays:
 - Detailed alarm configuration for one of the alarms
@@ -109,11 +109,11 @@ Amazon Simple Notification Service (SNS) enables sending notifications when Clou
    - Configured alarm actions to publish to SNS on state changes
    - Tested notification delivery
 
-### Evidence
+### Evidence:
 
 **Screenshot 603.png - SNS Topic Configuration:**
 
-![SNS Topic Setup](603.png)
+![SNS Topic Setup](Images/603.png)
 
 The screenshot shows:
 - SNS topic details including Topic ARN
@@ -153,11 +153,11 @@ CloudWatch Logs collects and stores log files from AWS resources and application
    - Filtered logs by time range and search terms
    - Identified key events and patterns
 
-### Evidence
+### Evidence:
 
 **Screenshot 604.png - CloudWatch Logs - EC2 Instance Logs:**
 
-![CloudWatch Logs EC2](604.png)
+![CloudWatch Logs EC2](Images/604.png)
 
 The screenshot displays:
 - Log group and log stream for EC2 instance
@@ -168,7 +168,7 @@ The screenshot displays:
 
 **Screenshot 605.png - Log Entries with Access Patterns:**
 
-![Log Access Patterns](605.png)
+![Log Access Patterns](Images/605.png)
 
 The screenshot shows:
 - Continuation of log entries over time
@@ -209,11 +209,11 @@ CloudWatch Logs Insights provides a powerful query language for analyzing log da
    - Detected any anomalous patterns
    - Exported results for documentation
 
-### Evidence
+### Evidence:
 
 **Screenshot 606.png - CloudWatch Insights Query:**
 
-![CloudWatch Insights](606.png)
+![CloudWatch Insights](Images/606.png)
 
 The screenshot demonstrates:
 - CloudWatch Insights query editor interface
@@ -322,13 +322,6 @@ Based on the collected evidence:
    - Automated alerting reduces mean time to detection (MTTD)
    - Historical data supports trend analysis and capacity planning
 
-### Challenges Encountered
-
-1. Initial CloudWatch agent configuration required proper IAM permissions
-2. Log format standardization necessary for effective Insights queries
-3. Alarm threshold tuning needed to balance sensitivity and false positives
-4. Email delivery delays occasionally occurred during high-volume periods
-
 ### Best Practices Identified
 
 1. **Alarm Design**
@@ -383,15 +376,6 @@ This lab provided hands-on experience with:
 - Using advanced query languages for log analysis
 - Building incident response workflows using AWS services
 
-### Recommendations for Production Environments
-
-1. **Comprehensive Coverage:** Monitor all critical metrics including CPU, memory, disk, network, and application-specific metrics
-2. **Multi-Layer Alerting:** Implement alerts at infrastructure, application, and business metric layers
-3. **Runbook Integration:** Link alarms to documented runbooks for consistent incident response
-4. **Regular Review:** Periodically review alarm thresholds and adjust based on actual workload patterns
-5. **Dashboard Creation:** Build CloudWatch dashboards for at-a-glance system health visibility
-6. **Compliance:** Configure appropriate log retention policies to meet regulatory requirements
-
 ### Future Enhancements
 
 Potential improvements to the monitoring solution include:
@@ -403,23 +387,24 @@ Potential improvements to the monitoring solution include:
 
 ---
 
-## Appendix
+## Short-Answer Questions
 
-### Evidence Files
-- `601.png` - CloudWatch Alarms Dashboard
-- `602.png` - Alarm Configuration Details
-- `603.png` - SNS Topic and Email Subscription
-- `604.png` - CloudWatch Logs - EC2 Instance Logs
-- `605.png` - Log Entries Showing Access Patterns
-- `606.png` - CloudWatch Insights Query Interface
+### Q1. What is the difference between a log and an event? Give an example of each from this lab.
 
-### References
-- AWS CloudWatch Documentation: https://docs.aws.amazon.com/cloudwatch/
-- AWS SNS Documentation: https://docs.aws.amazon.com/sns/
-- CloudWatch Logs Insights Query Syntax: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html
-- Lab Guide: IKB42603_Lab5_Monitoring_Logging_and_Incident_Detection.pdf
+A log is a durable record of an activity that has occurred, while an event is a trigger generated from activity that may require a response. In this lab, a log example was `LOGIN_FAIL user=admin ip=203.0.113.9`, which records a failed login attempt. An event example would be an alert such as "4 failures from 203.0.113.9", which could be triggered in near real time after detecting multiple failed login attempts.
 
----
+### Q2. Why must audit logs be tamper-proof, and how does a hash chain achieve this?
 
-**Lab Completed Successfully**  
-**Date:** September 6, 2026
+Audit logs must be tamper-proof so that attackers cannot modify or erase evidence of their activities. In Task 4, a hash chain was used to link each log entry to the previous hash. If any log entry is changed, the resulting hash will also change and break the chain. A different final hash therefore proves that the log has been tampered with.
+
+### Q3. How did correlation detect an incident that no single log line revealed?
+
+Correlation detected the incident by combining multiple related activities from the same IP address. In Task 5, the logs showed repeated failed login attempts, followed by a successful login and then a large data export from the same IP address. Together, these activities indicated a probable brute-force attack followed by account compromise and data exfiltration. No single log line revealed the complete attack pattern.
+
+### Q4. List the incident-response steps you performed and the goal of each.
+
+The incident-response steps performed in Task 6 were containment, evidence collection, and documentation. Containment involved blocking the attacker's IP address to prevent further malicious activity. Evidence collection involved creating a timestamped copy of the authentication log and generating a SHA-256 hash to preserve and verify its integrity. Documentation involved recording what happened, how the incident was detected, what was contained, and what evidence was collected.
+
+### Q5. How do the same logs serve both security monitoring and compliance evidence?
+
+The same logs can be used for security monitoring by identifying suspicious activities such as repeated failed logins, successful logins, and large data exports. They can also serve as compliance evidence because they provide records of security-relevant activities that can be preserved and verified for integrity. Therefore, logs support security detection, investigation, forensics, and compliance evidence.
