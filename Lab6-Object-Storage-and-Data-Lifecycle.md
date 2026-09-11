@@ -1,17 +1,27 @@
 # Lab 6: Object Storage and Data Lifecycle
-## IKB42603 - Cloud Computing
+
+**Course:** IKB42603 Cloud Computing  
+**Lab:** Lab 6 - Object Storage and Data Lifecycle
+**Date:** September 11, 2026  
+**Student Name:** Muhammad Daniel Firdaus  
+**Student ID:** 52215225183
 
 ---
 
-## Lab Overview
-This lab demonstrates AWS S3 object storage capabilities including:
-- Object tagging and classification
-- Public access blocking
-- Bucket policies for access control
-- Server-side encryption
-- Object versioning
-- Lifecycle management policies
-- Key Management Service (KMS) integration
+## Table of Contents
+1. [Objectives](#objectives)
+2. [Task 1: Object Tagging and Classification](#task-1-object-tagging-and-classification)
+3. [Task 2: Test Public Access to Objects](#task-2-test-public-access-to-objects)
+4. [Task 3: Enable Public Access Block](#task-3-enable-public-access-block)
+5. [Task 4: Implement Bucket Policy for Internal Access](#task-4-implement-bucket-policy-for-internal-access)
+6. [Task 5: Server-Side Encryption with AWS KMS](#task-5-server-side-encryption-with-aws-kms)
+7. [Task 6: Object Versioning and Recovery](#task-6-object-versioning-and-recovery)
+8. [Task 7: Lifecycle Management Policies](#task-7-lifecycle-management-policies)
+9. [Task 8: KMS Key Management and Scheduled Deletion](#task-8-kms-key-management-and-scheduled-deletion)
+10. [Summary of Key Concepts](#summary-of-key-concepts)
+11. [Lab Completion Results](#lab-completion-results)
+12. [Evidence Files](#evidence-files)
+13. [Conclusion](#conclusion)
 
 ---
 
@@ -37,7 +47,12 @@ Tag objects in S3 bucket with classification metadata to organize and manage dat
    | public/notice.txt         | 30 |
    +---------------------------+----+
    ```
-   **Evidence:** Screenshot 700.png
+
+### Evidence:
+
+**Screenshot 700.png - S3 Object Listing and Confidential Classification:**
+
+![S3 Object Listing and Confidential Classification](Images/700.png)
 
 3. **Get object tagging for confidential file**
    ```powershell
@@ -55,7 +70,10 @@ Tag objects in S3 bucket with classification metadata to organize and manage dat
        ]
    }
    ```
-   **Evidence:** Screenshot 700.png
+
+### Evidence:
+
+![S3 Object Listing and Confidential Classification](Images/700.png)
 
 ### Analysis
 The object `confidential/record.txt` has been tagged with classification metadata, allowing for automated policy enforcement and access control based on data sensitivity levels.
@@ -90,7 +108,12 @@ Verify that public access is properly blocked and test access control mechanisms
    
    Patient: Ahmad bin Ali, Diagnosis: confidential
    ```
-   **Evidence:** Screenshot 701.png
+
+### Evidence:
+
+**Screenshot 701.png - Anonymous Access to Confidential Record:**
+
+![Anonymous Access to Confidential Record](Images/701.png)
 
 ### Analysis
 The file is initially accessible via HTTP, exposing sensitive patient data. This demonstrates the need for proper public access blocking.
@@ -120,7 +143,11 @@ Configure S3 bucket to block all public access to protect sensitive data.
        }
    }
    ```
-   **Evidence:** Screenshot 702.png
+### Evidence:
+
+**Screenshot 702.png - Block Public Access Configuration:**
+
+![Block Public Access Configuration](Images/702.png)
 
 3. **Verify public access is now blocked**
    ```powershell
@@ -131,7 +158,10 @@ Configure S3 bucket to block all public access to protect sensitive data.
    ```
    anonymous read now: HTTP 200
    ```
-   **Evidence:** Screenshot 702.png
+
+### Evidence:
+
+![Block Public Access Configuration](Images/702.png)
 
 ### Analysis
 Public access block settings have been enabled with all four protections:
@@ -158,7 +188,11 @@ Create a bucket policy that allows access to internal documents based on IP addr
    ```
    Staff duty schedule, week 12
    ```
-   **Evidence:** Screenshot 703.png
+### Evidence:
+
+**Screenshot 703.png - Internal Access Allowed:**
+
+![Internal Access Allowed](Images/703.png)
 
 3. **Test conditional access with PowerShell**
    ```powershell
@@ -171,7 +205,10 @@ Create a bucket policy that allows access to internal documents based on IP addr
    ```
    internal: ALLOWED
    ```
-   **Evidence:** Screenshot 703.png
+
+### Evidence:
+
+![Internal Access Allowed](Images/703.png)
 
 ### Analysis
 The bucket policy successfully allows access to internal classified documents for authorized users/IPs while maintaining restrictions on public access.
@@ -198,7 +235,12 @@ Implement server-side encryption using AWS Key Management Service (KMS) for enha
    ```
    aws:kms arn:aws:kms:us-east-1:000000000000:key/449c3e67-abac-406f-a72b-0bf17b7accc2    True
    ```
-   **Evidence:** Screenshot 705.png
+
+### Evidence:
+
+**Screenshot 705.png - SSE-KMS Encryption Verification:**
+
+![SSE-KMS Encryption Verification](Images/705.png)
 
 3. **Verify file content is encrypted at rest**
    ```powershell
@@ -219,7 +261,12 @@ Implement server-side encryption using AWS Key Management Service (KMS) for enha
    x-amz-server-side-encryption: AES256
    x-amz-tagging-count: 1
    ```
-   **Evidence:** Screenshot 706.png
+
+### Evidence:
+
+**Screenshot 706.png - Presigned URL Access and Expiry Test:**
+
+![Presigned URL Access and Expiry Test](Images/706.png)
 
 ### Analysis
 Server-side encryption with KMS provides:
@@ -254,7 +301,12 @@ Enable versioning to protect against accidental deletion and allow recovery of p
    | lU_41Nf5ylQKoOofLMkY0MhaBhEEThc2             | True   |
    +-----------------------------------------------+--------+
    ```
-   **Evidence:** Screenshot 707.png
+
+### Evidence:
+
+**Screenshot 707.png - Versioning, Delete Marker and Data Recovery:**
+
+![Versioning, Delete Marker and Data Recovery](Images/707.png)
 
 3. **Recover deleted object by specifying version-id as null**
    ```powershell
@@ -279,7 +331,10 @@ Enable versioning to protect against accidental deletion and allow recovery of p
        "TagCount": 1
    }
    ```
-   **Evidence:** Screenshot 707.png
+
+### Evidence:
+
+![Versioning, Delete Marker and Data Recovery](Images/707.png)
 
 5. **Verify recovered content**
    ```powershell
@@ -290,7 +345,10 @@ Enable versioning to protect against accidental deletion and allow recovery of p
    ```
    Patient: Ahmad bin Ali, Diagnosis: confidential
    ```
-   **Evidence:** Screenshot 707.png
+
+### Evidence:
+
+![Versioning, Delete Marker and Data Recovery](Images/707.png)
 
 ### Analysis
 Versioning enables:
@@ -325,7 +383,12 @@ Configure lifecycle policies to automatically transition or delete objects based
    | AbortIncompleteUploads                        | Enabled  |
    +-----------------------------------------------+----------+
    ```
-   **Evidence:** Screenshot 708.png
+
+### Evidence:
+
+**Screenshot 708.png - Lifecycle Management Configuration:**
+
+![Lifecycle Management Configuration](Images/708.png)
 
 ### Lifecycle Policy Details
 
@@ -369,7 +432,12 @@ Understand KMS key lifecycle and scheduled deletion for secure key retirement.
    ```
    PendingDeletion 2026-09-18T14:36:00.023505+08:00
    ```
-   **Evidence:** Screenshot 709.png
+
+### Evidence:
+
+**Screenshot 709.png - KMS Key Scheduled for Deletion:**
+
+![KMS Key Scheduled for Deletion](Images/709.png)
 
 ### Analysis
 The KMS key shows:
@@ -408,45 +476,6 @@ The KMS key shows:
 - **Tag-Based Rules:** Apply policies based on object tags
 - **Multipart Upload Cleanup:** Remove incomplete uploads
 
-### 5. Security Best Practices
-✅ Enable versioning for critical data  
-✅ Use server-side encryption (SSE-KMS preferred)  
-✅ Block public access unless explicitly required  
-✅ Implement least privilege access with bucket policies  
-✅ Enable CloudTrail logging for audit  
-✅ Use object tagging for classification  
-✅ Implement lifecycle policies for cost optimization  
-✅ Schedule regular access reviews  
-
----
-
-## Lab Completion Results
-
-| Task | Description | Status |
-|------|-------------|--------|
-| 1 | Object Tagging and Classification | ✅ Completed |
-| 2 | Test Public Access | ✅ Completed |
-| 3 | Enable Public Access Block | ✅ Completed |
-| 4 | Implement Bucket Policy | ✅ Completed |
-| 5 | Server-Side Encryption with KMS | ✅ Completed |
-| 6 | Object Versioning and Recovery | ✅ Completed |
-| 7 | Lifecycle Management Policies | ✅ Completed |
-| 8 | KMS Key Management | ✅ Completed |
-
----
-
-## Evidence Files
-- **700.png** - Object listing and tagging verification
-- **701.png** - Public access test before blocking
-- **702.png** - Public access block configuration
-- **703.png** - Internal bucket policy testing
-- **704.png** - (Not referenced in tasks)
-- **705.png** - KMS encryption verification
-- **706.png** - Encrypted object header details
-- **707.png** - Object versioning and recovery
-- **708.png** - Lifecycle policy configuration
-- **709.png** - KMS key deletion schedule
-
 ---
 
 ## Conclusion
@@ -464,7 +493,28 @@ These features combined create a robust, secure, and cost-effective object stora
 
 ---
 
-**Lab Date:** September 11, 2026  
-**Environment:** AWS LocalStack (localhost:4566)  
-**Course:** IKB42603 - Cloud Computing  
-**Lab Number:** 6 - Object Storage and Data Lifecycle
+## Short-Answer Questions
+
+### Q1. Which single element of the Task 2 policy caused the exposure, and why is `Principal: "*"` more dangerous on a bucket policy than an over-broad IAM policy attached to one user?
+
+The single element that caused the exposure was `"Principal": "*"`. This allows any principal, including anonymous users, to access the S3 object when the specified action is allowed. `Principal: "*"` is more dangerous on a bucket policy because it can expose the resource to everyone, while an over-broad IAM policy attached to one user only affects that particular user.
+
+### Q2. Explain the difference between an identity-based policy and a resource-based policy. In Task 4, which one decided each of the analyst's two requests?
+
+An identity-based policy is attached to an IAM user, group, or role and defines which actions that identity is allowed to perform. A resource-based policy is attached directly to a resource such as an S3 bucket and defines which principals can access it. In Task 4, the IAM policy allowed `DataAnalyst` to read S3 objects, while the bucket policy allowed access to the `internal/*` prefix and explicitly denied access to the `confidential/*` prefix. The explicit Deny takes precedence over the Allow, so the internal request was allowed while the confidential request was denied during policy evaluation.
+
+### Q3. Block Public Access is described as a guardrail rather than a control. What is the difference, and why does the distinction matter for an organisation with many engineers?
+
+A security control performs a specific security function, while a guardrail provides a preventative restriction that helps stop unsafe configurations. Block Public Access acts as a guardrail against accidental public exposure. This distinction is important in an organisation with many engineers because it reduces the chance that one incorrect bucket policy or ACL will unintentionally expose sensitive data.
+
+### Q4. Your bucket has default SSE-KMS encryption. Does that protect the confidential record from the analyst in Task 4? Explain precisely what server-side encryption does and does not defend against.
+
+No. SSE-KMS protects the confidential record while it is stored at rest by encrypting the data, but it does not replace access control. It does not prevent an authenticated user from retrieving the object when that user has the required S3 permissions. Therefore, encryption protects the stored data, while IAM and bucket policies determine who can access it.
+
+### Q5. A patient invokes their right to erasure. Using your Task 7 evidence, explain why delete-object alone is not compliant, and describe two mechanisms that would make the deletion provable.
+
+`delete-object` alone is not sufficient when versioning is enabled because it creates a delete marker while previous object versions remain recoverable. In Task 7, the original confidential record was recovered even after the current object was deleted. Two mechanisms that would make deletion more provable are permanently deleting every object version and delete marker by version ID, and using cryptographic erasure by disabling or destroying the KMS key protecting the data while retaining auditable evidence of the key retirement.
+
+### Q6. You are the auditor in Week 11. Name three commands from this lab whose output you would collect as compliance evidence, and state which control each one evidences.
+
+Three useful commands are `aws $EP s3api get-public-access-block --bucket $BUCKET`, which evidences the Block Public Access configuration; `aws $EP s3api head-object --bucket $BUCKET --key confidential/record-v2.txt --query "[ServerSideEncryption,SSEKMSKeyId,BucketKeyEnabled]" --output text`, which evidences default SSE-KMS encryption; and `aws $EP s3api get-bucket-lifecycle-configuration --bucket $BUCKET --query "Rules[].[ID,Status]" --output table`, which evidences the lifecycle and retention policy.
