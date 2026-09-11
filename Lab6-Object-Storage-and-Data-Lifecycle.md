@@ -497,13 +497,13 @@ These features combined create a robust, secure, and cost-effective object stora
 
 ## Short-Answer Questions
 
-### Q1. Which single element of the Task 2 policy caused the exposure, and why is `Principal: "*"` more dangerous on a bucket policy than an over-broad IAM policy attached to one user?
+### Q1. Which single element of the Task 2 policy caused the exposure, and why is Principal: "*" more dangerous on a bucket policy than an over-broad IAM policy attached to one user?
 
-The single element that caused the exposure was `"Principal": "*"`. This allows any principal, including anonymous users, to access the S3 object when the specified action is allowed. `Principal: "*"` is more dangerous on a bucket policy because it can expose the resource to everyone, while an over-broad IAM policy attached to one user only affects that particular user.
+The single element that caused the exposure was "Principal": "*". This allows any principal, including anonymous users, to access the S3 object when the specified action is allowed. Principal: "*" is more dangerous on a bucket policy because it can expose the resource to everyone, while an over-broad IAM policy attached to one user only affects that particular user.
 
 ### Q2. Explain the difference between an identity-based policy and a resource-based policy. In Task 4, which one decided each of the analyst's two requests?
 
-An identity-based policy is attached to an IAM user, group, or role and defines which actions that identity is allowed to perform. A resource-based policy is attached directly to a resource such as an S3 bucket and defines which principals can access it. In Task 4, the IAM policy allowed `DataAnalyst` to read S3 objects, while the bucket policy allowed access to the `internal/*` prefix and explicitly denied access to the `confidential/*` prefix. The explicit Deny takes precedence over the Allow, so the internal request was allowed while the confidential request was denied during policy evaluation.
+An identity-based policy is attached to an IAM user, group, or role and defines which actions that identity is allowed to perform. A resource-based policy is attached directly to a resource such as an S3 bucket and defines which principals can access it. In Task 4, the IAM policy allowed DataAnalyst to read S3 objects, while the bucket policy allowed access to the internal/* prefix and explicitly denied access to the confidential/* prefix. The explicit Deny takes precedence over the Allow, so the internal request was allowed while the confidential request was denied during policy evaluation.
 
 ### Q3. Block Public Access is described as a guardrail rather than a control. What is the difference, and why does the distinction matter for an organisation with many engineers?
 
@@ -515,8 +515,8 @@ No. SSE-KMS protects the confidential record while it is stored at rest by encry
 
 ### Q5. A patient invokes their right to erasure. Using your Task 7 evidence, explain why delete-object alone is not compliant, and describe two mechanisms that would make the deletion provable.
 
-`delete-object` alone is not sufficient when versioning is enabled because it creates a delete marker while previous object versions remain recoverable. In Task 7, the original confidential record was recovered even after the current object was deleted. Two mechanisms that would make deletion more provable are permanently deleting every object version and delete marker by version ID, and using cryptographic erasure by disabling or destroying the KMS key protecting the data while retaining auditable evidence of the key retirement.
+delete-object alone is not sufficient when versioning is enabled because it creates a delete marker while previous object versions remain recoverable. In Task 7, the original confidential record was recovered even after the current object was deleted. Two mechanisms that would make deletion more provable are permanently deleting every object version and delete marker by version ID, and using cryptographic erasure by disabling or destroying the KMS key protecting the data while retaining auditable evidence of the key retirement.
 
 ### Q6. You are the auditor in Week 11. Name three commands from this lab whose output you would collect as compliance evidence, and state which control each one evidences.
 
-Three useful commands are `aws $EP s3api get-public-access-block --bucket $BUCKET`, which evidences the Block Public Access configuration; `aws $EP s3api head-object --bucket $BUCKET --key confidential/record-v2.txt --query "[ServerSideEncryption,SSEKMSKeyId,BucketKeyEnabled]" --output text`, which evidences default SSE-KMS encryption; and `aws $EP s3api get-bucket-lifecycle-configuration --bucket $BUCKET --query "Rules[].[ID,Status]" --output table`, which evidences the lifecycle and retention policy.
+Three useful commands are aws $EP s3api get-public-access-block --bucket $BUCKET, which evidences the Block Public Access configuration; aws $EP s3api head-object --bucket $BUCKET --key confidential/record-v2.txt --query "[ServerSideEncryption,SSEKMSKeyId,BucketKeyEnabled]" --output text, which evidences default SSE-KMS encryption; and aws $EP s3api get-bucket-lifecycle-configuration --bucket $BUCKET --query "Rules[].[ID,Status]" --output table, which evidences the lifecycle and retention policy.
