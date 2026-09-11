@@ -161,7 +161,9 @@ Configure S3 bucket to block all public access to protect sensitive data.
 
 ### Evidence:
 
-![Block Public Access Configuration](Images/702.png)
+**Screenshot 703.png - Internal Access Allowed:**
+
+![Internal Access Allowed](Images/703.png)
 
 ### Analysis
 Public access block settings have been enabled with all four protections:
@@ -190,9 +192,9 @@ Create a bucket policy that allows access to internal documents based on IP addr
    ```
 ### Evidence:
 
-**Screenshot 703.png - Internal Access Allowed:**
+**Screenshot 704.png - Object Classification Tags:**
 
-![Internal Access Allowed](Images/703.png)
+![Object Classification Tags](Images/704.png)
 
 3. **Test conditional access with PowerShell**
    ```powershell
@@ -208,7 +210,7 @@ Create a bucket policy that allows access to internal documents based on IP addr
 
 ### Evidence:
 
-![Internal Access Allowed](Images/703.png)
+![Object Classification Tags](Images/704.png)
 
 ### Analysis
 The bucket policy successfully allows access to internal classified documents for authorized users/IPs while maintaining restrictions on public access.
