@@ -1,37 +1,41 @@
 # ☁️ Cloud Computing Security Essentials
 
-This repository contains my laboratory reports and practical exercises for the **IKB42603 – Cloud Computing Security Essentials** course.
+This repository contains my laboratory reports, practical exercises, configurations, commands, screenshots, and evidence for the **IKB42603 – Cloud Computing Security Essentials** course.
 
-## Contents
+## 📚 Contents
 
-- Lab 0 – Environment Setup
-- Lab 1 – Coming Soon
-- Lab 2 – Coming Soon
-- Lab 3 – Coming Soon
-- Lab 4 – Coming Soon
-- Lab 5 – Coming Soon
+- [Lab 0 – Environment Setup](./Lab0-Environment-Setup.md)
+- [Lab 1 – Cloud Security Fundamentals](./Lab1-Cloud-Security-Fundamentals.md)
+- [Lab 2 – Container Security](./Lab2-Container-Security.md)
+- [Lab 3 – Kubernetes Security](./Lab3-Kubernetes-Security.md)
+- [Lab 4 – Cloud Identity and Access Management](./Lab4-Cloud-IAM.md)
+- [Lab 5 – Monitoring, Logging and Incident Detection](./Lab5-Monitoring-Logging-and-Incident-Detection.md)
+- [Lab 6 – Cloud Access Control and Security Testing](./Lab6-Cloud-Access-Control-and-Security-Testing.md)
 
-## Technologies
+## 🛠️ Technologies & Tools
 
-- Docker
-- Kubernetes (kind & kubectl)
-- AWS CLI
-- LocalStack
-- OpenSSL
-- OATH Toolkit
-- Kali Linux
-- Git & GitHub
+- **Docker**
+- **Kubernetes**
+- **kind**
+- **kubectl**
+- **AWS CLI**
+- **LocalStack**
+- **OpenSSL**
+- **OATH Toolkit**
+- **Kali Linux**
+- **Git & GitHub**
 
-## Notes
+## 📂 Repository Structure
 
-Each lab report includes:
-- Objectives
-- Step-by-step procedures
-- Commands executed
-- Screenshots
-- Results and conclusions
-
----
-
-**Student:** Muhammad Daniel Firdaus  
-**Course:** IKB42603 – Cloud Computing Security Essentials
+```text
+Cloud-Computing-Security-Essentials/
+│
+├── README.md
+│
+├── Lab0-Environment-Setup.md
+├── Lab1-Cloud-Security-Fundamentals.md
+├── Lab2-Container-Security.md
+├── Lab3-Kubernetes-Security.md
+├── Lab4-Cloud-IAM.md
+├── Lab5-Monitoring-Logging-and-Incident-Detection.md
+└── Lab6-Cloud-Access-Control-and-Security-Testing.md
